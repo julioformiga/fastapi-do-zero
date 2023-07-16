@@ -9,22 +9,24 @@
       
       
       
+        <link rel="prev" href="../08/">
       
-        <link rel="next" href="01/">
       
-      <link rel="icon" href="assets/images/favicon.png">
+        <link rel="next" href="../10/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
     
     
       
-        <title>FastAPI do Zero</title>
+        <title>[OK] Dockerizando a nossa aplicação - FastAPI do Zero</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -40,16 +42,16 @@
       
     
     
-      <link rel="stylesheet" href="stylesheets/extra.css">
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-   <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
         html.glightbox-open { overflow: initial; height: 100%; }
         .gslide-title { margin-top: 0px; user-select: text; }
         .gslide-desc { color: #666; user-select: text; }
@@ -60,7 +62,7 @@
             body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
-            </style> <script src="assets/javascripts/glightbox.min.js"></script></head>
+            </style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -82,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#wip-fastapi-do-zero" class="md-skip">
+        <a href="#ok-dockerizando-a-nossa-aplicacao" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -98,7 +100,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
-    <a href="." title="FastAPI do Zero" class="md-header__button md-logo" aria-label="FastAPI do Zero" data-md-component="logo">
+    <a href=".." title="FastAPI do Zero" class="md-header__button md-logo" aria-label="FastAPI do Zero" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -117,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              [WIP] FastAPI do ZERO
+              [OK] Dockerizando a nossa aplicação
             
           </span>
         </div>
@@ -222,7 +224,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="FastAPI do Zero" class="md-nav__button md-logo" aria-label="FastAPI do Zero" data-md-component="logo">
+    <a href=".." title="FastAPI do Zero" class="md-nav__button md-logo" aria-label="FastAPI do Zero" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -251,6 +253,141 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        [WIP] FastAPI do ZERO
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01/" class="md-nav__link">
+        [OK] Configurando o Ambiente de Desenvolvimento
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02/" class="md-nav__link">
+        [OK] Estruturando seu Projeto e Criando Rotas CRUD
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03/" class="md-nav__link">
+        [OK] Configurando o Banco de Dados e Gerenciando Migrações com Alembic
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04/" class="md-nav__link">
+        [OK] Integrando Banco de Dados a API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05/" class="md-nav__link">
+        [OK] Autenticação e Autorização com JWT
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06/" class="md-nav__link">
+        [REV] Refatorando a Estrutura do Projeto
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07/" class="md-nav__link">
+        [OK] Tornando o sistema de autenticação robusto
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08/" class="md-nav__link">
+        [WIP] Criando Rotas CRUD para Gerenciamento de Tarefas em FastAPI
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -263,12 +400,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          [WIP] FastAPI do ZERO
+          [OK] Dockerizando a nossa aplicação
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
-        [WIP] FastAPI do ZERO
+      <a href="./" class="md-nav__link md-nav__link--active">
+        [OK] Dockerizando a nossa aplicação
       </a>
       
         
@@ -287,91 +424,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#o-que-e-fastapi" class="md-nav__link">
-    O que é FastAPI?
+  <a href="#o-docker" class="md-nav__link">
+    O Docker
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sobre-o-curso" class="md-nav__link">
-    Sobre o curso
+  <a href="#criando-nosso-dockerfile" class="md-nav__link">
+    Criando nosso Dockerfile
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-que-voce-vai-aprender" class="md-nav__link">
-    O que você vai aprender?
+  <a href="#criando-a-imagem" class="md-nav__link">
+    Criando a imagem
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pre-requisitos" class="md-nav__link">
-    Pré-requisitos
+  <a href="#rodando-o-container" class="md-nav__link">
+    Rodando o container
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#aulas" class="md-nav__link">
-    Aulas
+  <a href="#commit" class="md-nav__link">
+    Commit
   </a>
-  
-    <nav class="md-nav" aria-label="Aulas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#quem-vai-ministrar-essas-aulas" class="md-nav__link">
-    🦖 Quem vai ministrar essas aulas?
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#licenca" class="md-nav__link">
-    📖 Licença
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ferramentas-necessarias-para-acompanhar-o-curso" class="md-nav__link">
-    🧰 Ferramentas necessárias para acompanhar o curso
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ferramentas-de-apoio" class="md-nav__link">
-    🔧 Ferramentas de apoio
-  </a>
-  
-    <nav class="md-nav" aria-label="🔧 Ferramentas de apoio">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#repositorio" class="md-nav__link">
-    📁 Repositório
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploy" class="md-nav__link">
-    🚀 Deploy
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -398,142 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="01/" class="md-nav__link">
-        [OK] Configurando o Ambiente de Desenvolvimento
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="02/" class="md-nav__link">
-        [OK] Estruturando seu Projeto e Criando Rotas CRUD
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="03/" class="md-nav__link">
-        [OK] Configurando o Banco de Dados e Gerenciando Migrações com Alembic
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="04/" class="md-nav__link">
-        [OK] Integrando Banco de Dados a API
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="05/" class="md-nav__link">
-        [OK] Autenticação e Autorização com JWT
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="06/" class="md-nav__link">
-        [REV] Refatorando a Estrutura do Projeto
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="07/" class="md-nav__link">
-        [OK] Tornando o sistema de autenticação robusto
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="08/" class="md-nav__link">
-        [WIP] Criando Rotas CRUD para Gerenciamento de Tarefas em FastAPI
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="09/" class="md-nav__link">
-        [OK] Dockerizando a nossa aplicação
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="10/" class="md-nav__link">
+      <a href="../10/" class="md-nav__link">
         [OK] Automatizando os testes com Integração Contínua
       </a>
     </li>
@@ -548,7 +496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="11/" class="md-nav__link">
+      <a href="../11/" class="md-nav__link">
         [WIP] Fazendo deploy no Fly.io e configurando o PostgreSQL
       </a>
     </li>
@@ -563,7 +511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="12/" class="md-nav__link">
+      <a href="../12/" class="md-nav__link">
         [WIP] Despedida
       </a>
     </li>
@@ -597,91 +545,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#o-que-e-fastapi" class="md-nav__link">
-    O que é FastAPI?
+  <a href="#o-docker" class="md-nav__link">
+    O Docker
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sobre-o-curso" class="md-nav__link">
-    Sobre o curso
+  <a href="#criando-nosso-dockerfile" class="md-nav__link">
+    Criando nosso Dockerfile
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#o-que-voce-vai-aprender" class="md-nav__link">
-    O que você vai aprender?
+  <a href="#criando-a-imagem" class="md-nav__link">
+    Criando a imagem
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pre-requisitos" class="md-nav__link">
-    Pré-requisitos
+  <a href="#rodando-o-container" class="md-nav__link">
+    Rodando o container
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#aulas" class="md-nav__link">
-    Aulas
+  <a href="#commit" class="md-nav__link">
+    Commit
   </a>
-  
-    <nav class="md-nav" aria-label="Aulas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#quem-vai-ministrar-essas-aulas" class="md-nav__link">
-    🦖 Quem vai ministrar essas aulas?
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#licenca" class="md-nav__link">
-    📖 Licença
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ferramentas-necessarias-para-acompanhar-o-curso" class="md-nav__link">
-    🧰 Ferramentas necessárias para acompanhar o curso
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ferramentas-de-apoio" class="md-nav__link">
-    🔧 Ferramentas de apoio
-  </a>
-  
-    <nav class="md-nav" aria-label="🔧 Ferramentas de apoio">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#repositorio" class="md-nav__link">
-    📁 Repositório
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploy" class="md-nav__link">
-    🚀 Deploy
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -710,109 +604,65 @@
   
 
 
-<div><h1 id="wip-fastapi-do-zero">[WIP] FastAPI do ZERO</h1>
-<p><strong>Construindo um Projeto com Bancos de Dados, Testes e Deploy</strong></p>
-<p>Boas vindas à jornada de aprendizado mais empolgante que você vai embarcar: "FastAPI do Zero: Criando um Projeto com Bancos de Dados, Testes e Deploy". Este curso foi meticulosamente projetado para proporcionar a você uma experiência de aprendizado imersiva e prática, equipando-o(a) com as habilidades necessárias para se tornar um profissional altamente competente no desenvolvimento de APIs utilizando o poderoso framework FastAPI.</p>
-<h2 id="o-que-e-fastapi">O que é FastAPI?</h2>
-<p>FastAPI é um moderno e poderoso framework Python, construído com simplicidade, velocidade e eficiência em mente. Sua alta performance, juntamente com suas intuitivas anotações de tipo Python, oferece uma experiência de desenvolvimento incrivelmente eficiente, tornando a criação de APIs RESTful não apenas mais fácil, mas também mais divertida.</p>
-<h2 id="sobre-o-curso">Sobre o curso</h2>
-<p>Este curso é uma combinação abrangente de teoria e prática, ideal tanto para iniciantes quanto para desenvolvedores experientes que desejam aprofundar seu conhecimento em FastAPI. </p>
-<p>Vamos, juntos, construir do zero um projeto prático de gerenciamento de tarefas (um todo list). Este projeto contará com autenticação de usuários e operações CRUD completas, permitindo a criação, leitura, atualização e exclusão de tarefas. A ideia aqui é fornecer uma experiência prática intensiva, para que você veja em tempo real como uma API é construída do começo ao fim.</p>
-<p>A grande novidade é que, para isso, usaremos as ferramentas mais modernas disponíveis no mercado em 2023: a versão 0.100 do FastAPI, a versão 2.0 do Pydantic, e a versão 2.0 do SQLAlchemy ORM. Essas versões trouxeram diversas mudanças significativas, e nós vamos explorar todas elas. Também usaremos Python na versão 3.11, bem como o Alembic para gerenciamento de migrações. </p>
-<p>Um aspecto essencial desse curso é o uso do pytest para a criação de testes. Ao longo das aulas, aprenderemos a lidar com cobertura de código e testes, garantindo que nossas APIs sejam robustas e confiáveis.</p>
-<h2 id="o-que-voce-vai-aprender">O que você vai aprender?</h2>
-<p>Aqui está uma visão geral dos tópicos que vamos abordar neste curso:</p>
-<ol>
-<li>
-<p><strong>Configurando um ambiente de desenvolvimento para FastAPI</strong>: Vamos começar do absoluto zero, criando e configurando nosso ambiente de desenvolvimento. </p>
-</li>
-<li>
-<p><strong>Primeiros Passos com FastAPI e TDD</strong>: Depois de configurar o ambiente, mergulharemos na estrutura básica de um projeto FastAPI e faremos uma introdução detalhada ao Test Driven Development (TDD).</p>
-</li>
-<li>
-<p><strong>Modelagem de Dados com Pydantic e SQLAlchemy</strong>: Aprenderemos a criar e manipular modelos de dados utilizando Pydantic e SQLAlchemy, dois recursos que levam a eficiência do FastAPI a um outro nível.</p>
-</li>
-<li>
-<p><strong>Autenticação e Autorização em FastAPI</strong>: Vamos construir um sistema de autenticação completo, para proteger nossas rotas e garantir que apenas usuários autenticados tenham acesso a certos dados.</p>
-</li>
-<li>
-<p><strong>Testando sua Aplicação FastAPI</strong>: Faremos uma introdução detalhada aos testes de aplicação FastAPI, utilizando as bibliotecas pytest e coverage.</p>
-</li>
-<li>
-<p><strong>Dockerizando e Fazendo Deploy de sua Aplicação FastAPI</strong>: Por fim, vamos aprender como "dockerizar" nossa aplicação FastAPI e fazer seu deploy utilizando Fly.io.</p>
-</li>
-</ol>
-<h2 id="pre-requisitos">Pré-requisitos</h2>
-<p>Para aproveitar ao máximo este curso, é recomendado que você tenha algum conhecimento prévio de Python. Além disso, algum entendimento básico de desenvolvimento web e APIs RESTful será útil, mas não essencial, pois {dizer que a ideia é fazer um projeto com foco prático, então você pode entender como as coisas são construídas até o fim do processo!}</p>
-<details class="info">
-<summary>Caso esteja iniciando seus estudos em Python!</summary>
-<p>Caso você ainda não se sinta uma pessoa preparada, ou caiu aqui sem saber exatamente o que esperar. Temos um pequeno curso introdutório. Destinado aos primeiros passos com python.
-<a class="glightbox" href="https://youtube.com/embed/yTQDbqmv8Ho" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><div class="video-container"><iframe src="https://youtube.com/embed/yTQDbqmv8Ho" style="position:relative;width:100%;height:22.172vw" frameborder="0" allowfullscreen alt="type:video"></iframe></div></a></p>
-<p>Ou então a leitura do <a href="https://penseallen.github.io/PensePython2e/" target="_blank">Pense em python</a></p>
-</details>
-<h2 id="aulas">Aulas</h2>
-<ol>
-<li><a href="/01/" target="_blank">Configurando o Ambiente de Desenvolvimento</a></li>
-<li><a href="/02/" target="_blank">Estruturando seu Projeto e Criando Rotas CRUD</a></li>
-<li><a href="/03/" target="_blank">Configurando Banco de Dados e Gerenciando Migrações com Alembic</a></li>
-<li><a href="/04/" target="_blank">Integrando Banco de Dados a API</a></li>
-<li><a href="/05/" target="_blank">Autenticação e Autorização</a></li>
-<li><a href="/06/" target="_blank">Refatorando a Estrutura do Projeto</a></li>
-<li><a href="/07/" target="_blank">Tornando o sistema de autenticação robusto</a></li>
-<li><a href="/08/" target="_blank">Criando Rotas CRUD para Gerenciamento de Tarefas em FastAPI</a></li>
-<li><a href="/09/" target="_blank">Criando Rotas CRUD para Tarefas</a></li>
-<li><a href="/10/" target="_blank">Dockerizando a aplicação</a></li>
-<li><a href="/11/" target="_blank">Automatizando os testes com integração contínua</a></li>
-<li><a href="/11/" target="_blank">Fazendo o deploy no fly.io</a></li>
-<li><a href="/12/" target="_blank">Despedida</a></li>
-</ol>
-<h3 id="quem-vai-ministrar-essas-aulas">🦖 Quem vai ministrar essas aulas?</h3>
-<p>Prazer! Eu me chamo Eduardo. Mas as pessoas me conhecem na internet como <a href="https:/dunossauro.com" target="_blank">@dunossauro</a>.</p>
-<div class="sbs">
-<p><a class="glightbox" href="assets/dunossauro.jpg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img align="left" alt="Uma fotografia minha, Dunossauro, sentado em um banco com um por do sol ao fundo" class="shadow" src="assets/dunossauro.jpg" width="300"></a></p>
-<div>
-<p>Eu sou um programador Python muito empolgado e curioso. Toco um projeto pessoal chamado <a href="https://www.youtube.com/@Dunossauro" target="_blank">Live de Python</a> a pouco mais de 6 anos. Onde conversamos sobre tudo e mais um pouco quando o assunto é python.</p>
-<p>Esse projeto que estamos desenvolvendo é um pedaço, um projeto, de um grande curso de fastAPI que estou montando. Espero que você se divirta ao máximo com a parte prática enquanto escrevo em mais detalhes todo o potencial teórico que lançarei no futuro!</p>
-<p><a href="https://youtu.be/ikmFLkjxqFg" target="_blank">Caso queira saber mais sobre esse projeto completo</a>.</p>
-</div>
-</div>
-<h2 id="licenca">📖 Licença</h2>
-<p>Todo esse curso foi escrito e produzido por Eduardo Mendes (<a href="https://dunossauro.com/" target="_blank">@dunossauro</a>).</p>
-<p>Todo esse material é gratuito e está sob licença Creative Commons <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">BY-NC-SA</a>. O que quer dizer que:</p>
+<div><h1 id="ok-dockerizando-a-nossa-aplicacao">[OK] Dockerizando a nossa aplicação</h1>
+<hr>
+<p>Objetivos da aula:</p>
 <ul>
-<li>Você pode copiar e reproduzir esse material em qualquer meio e em qualquer formato;</li>
-<li>Você pode adaptar esse material e construir outros materiais usando esse material.</li>
+<li>Compreender os conceitos básicos do Docker</li>
+<li>Aprender o que é um Dockerfile e sua estrutura</li>
+<li>Entender como criar uma imagem Docker para a nossa aplicação FastAPI</li>
+<li>Aprender a rodar a aplicação utilizando Docker</li>
 </ul>
-<p>Pontos de atenção:</p>
-<ul>
-<li>Você precisa dar os devidos créditos a esse material onde for usar ou adaptar;</li>
-<li>Você não pode usar para fins comerciais. Como vender ou usar para obter vantagens comerciais;</li>
-<li>Todo o material derivado desse material deve ser redistribuído com a licença <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA</a>.</li>
-</ul>
-<h2 id="ferramentas-necessarias-para-acompanhar-o-curso">🧰 Ferramentas necessárias para acompanhar o curso</h2>
+<hr>
+<p>Depois de implementar nosso gerenciador de tarefas na aula anterior, temos uma versão estável da nossa aplicação. Agora, vamos aprender como podemos "dockerizar" nossa aplicação FastAPI. Essa etapa é crucial para garantir que nossa aplicação seja facilmente transportável e possa ser executada em qualquer ambiente sem problemas.</p>
+<h2 id="o-docker">O Docker</h2>
+<p>Docker é uma plataforma aberta que permite automatizar o processo de implantação, escalonamento e operação de aplicações dentro de contêineres. Ele serve para "empacotar" uma aplicação e suas dependências em um contêiner virtual que pode ser executado em qualquer sistema operacional que suporte Docker. Isso facilita a implantação, o desenvolvimento e o compartilhamento de aplicações, além de proporcionar um ambiente isolado e consistente.</p>
+<h2 id="criando-nosso-dockerfile">Criando nosso Dockerfile</h2>
+<p>O Dockerfile é um arquivo de texto que contém todas as instruções para construir uma imagem Docker. Ele define o ambiente de execução, os comandos necessários para preparar o ambiente e o comando a ser executado quando um contêiner é iniciado a partir da imagem.</p>
+<p>Aqui está o nosso Dockerfile para a aplicação FastAPI:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">ENV</span><span class="w"> </span><span class="nv">POETRY_VIRTUALENVS_CREATE</span><span class="o">=</span><span class="nb">false</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>poetry
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">RUN</span><span class="w"> </span>poetry<span class="w"> </span>config<span class="w"> </span>installer.max-workers<span class="w"> </span><span class="m">10</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">RUN</span><span class="w"> </span>poetry<span class="w"> </span>install<span class="w"> </span>--no-interaction<span class="w"> </span>--no-ansi
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"poetry"</span><span class="p">,</span><span class="w"> </span><span class="s2">"run"</span><span class="p">,</span><span class="w"> </span><span class="s2">"uvicorn"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--host"</span><span class="p">,</span><span class="w"> </span><span class="s2">"0.0.0.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"fast_zero.app:app"</span><span class="w"> </span><span class="p">]</span>
+</code></pre></div>
+<p>Aqui está o que cada linha faz:</p>
 <ol>
-<li>Um editor de texto ou IDE de sua escolha. Estou usando o <a href="https://www.gnu.org/software/emacs/" target="_blank">GNU/Emacs</a> enquanto escrevo as aulas;</li>
-<li>Um terminal. Todos os exemplos do curso são executados e explicados no terminal. Você pode usar o que se sentir mais a vontade e for compatível com seu sistema operacional;</li>
-<li>Ter o interpretador Python instalado em uma versão igual ou superior a <code>3.11</code></li>
-<li>Uma conta no <a href="https://github.com/" target="_blank">Github</a>: para podermos testar com github Actions;</li>
-<li>Uma conta no <a href="https://fly.io/" target="_blank">Fly.io</a>: ferramenta que usaremos para fazer deploy.</li>
+<li><code>FROM python:3.11-slim</code>: Define a imagem base para nosso contêiner. Estamos usando a versão slim da imagem do Python 3.11, que tem tudo que precisamos para rodar nossa aplicação.</li>
+<li><code>ENV POETRY_VIRTUALENVS_CREATE=false</code>: Define uma variável de ambiente que diz ao Poetry para não criar um ambiente virtual.</li>
+<li><code>RUN pip install poetry</code>: Instala o Poetry, nosso gerenciador de pacotes.</li>
+<li><code>COPY . .</code>: Copia todos os arquivos do diretório atual para o contêiner.</li>
+<li><code>RUN poetry config installer.max-workers 10</code>: Configura o Poetry para usar até 10 workers ao instalar pacotes.</li>
+<li><code>RUN poetry install --no-interaction --no-ansi</code>: Instala as dependências do nosso projeto sem interação e sem cores no output.</li>
+<li><code>EXPOSE 8000</code>: Informa ao Docker que o contêiner vai escutar na porta 8000.</li>
+<li><code>CMD [ "poetry", "run", "uvicorn", "--host", "0.0.0.0", "fast_zero.app:app" ]</code>: Define o comando que será executado quando o contêiner for iniciado. Neste caso, estamos iniciando nossa aplicação FastAPI usando Uvicorn.</li>
 </ol>
-<h2 id="ferramentas-de-apoio">🔧 Ferramentas de apoio</h2>
-<p>Toda essa página foi feita usando as seguintes bibliotecas:</p>
-<ul>
-<li><a href="https://www.mkdocs.org/" target="_blank">MkDocs</a>: Para geração das páginas estáticas usando Markdown</li>
-<li><a href="https://squidfunk.github.io/mkdocs-material/" target="_blank">Mkdocs-material</a>: Tema para o MKDocs</li>
-<li><a href="https://facelessuser.github.io/pymdown-extensions/" target="_blank">pymdown-extensions</a>: Extensões para MKDocs, como emojis, diagramas e blocos estilizados de código</li>
-<li><a href="https://python-markdown.github.io/" target="_blank">Python-Markdown</a>: Extensão do Python para Markdown</li>
-<li><a href="https://github.com/soulless-viewer/mkdocs-video" target="_blank">Mkdocs-video</a>: Extensão para o MKDocs exibir os vídeos na página</li>
-<li><a href="https://mermaid-js.github.io/mermaid/" target="_blank">Mermaid.js</a>: Construção dos diagramas</li>
-</ul>
-<h3 id="repositorio">📁 Repositório</h3>
-<p>O versionamento de tudo está sendo feito no <a href="https://github.com/dunossauro/fastapi-do-zero" target="_blank">repositório do curso Github</a></p>
-<h3 id="deploy">🚀 Deploy</h3>
-<p>Os deploys das páginas estáticas geradas pelo MkDocs estão sendo feitos no <a href="https://www.netlify.com/" target="_blank">Netlify</a></p>
+<h2 id="criando-a-imagem">Criando a imagem</h2>
+<p>Para criar uma imagem Docker a partir do Dockerfile, usamos o comando <code>docker build</code>. O comando a seguir cria uma imagem chamada "fast_zero":</p>
+<div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span><span class="s2">"fast_zero"</span><span class="w"> </span>.
+</code></pre></div>
+<p>Este comando lê o Dockerfile no diretório atual (indicado pelo <code>.</code>) e cria uma imagem chamada "fast_zero".</p>
+<h2 id="rodando-o-container">Rodando o container</h2>
+<p>Para rodar o contêiner, usamos o comando <code>docker run</code>. O comando a seguir inicia um contêiner da imagem "fast_zero" e mapeia a porta 8000 do contêiner para a porta 8000 do host:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>run<span class="w"> </span>fast_zero:latest<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000
+</code></pre></div>
+<p>Este comando iniciará nossa aplicação dentro de um contêiner Docker, que estará escutando na porta 8000.</p>
+<h2 id="commit">Commit</h2>
+<p>Após criar o Dockerfile e testar a imagem Docker, podemos fazer o commit das alterações no Git:</p>
+<ol>
+<li>Adicione o Dockerfile e quaisquer outros arquivos modificados ao stage do Git com <code>git add .</code></li>
+<li>Faça o commit das alterações com <code>git commit -m "Dockerize application"</code></li>
+<li>Empurre as alterações para o repositório remoto com <code>git push</code></li>
+</ol>
 <h2 id="conclusao">Conclusão</h2>
-<p>Estou animado para embarcar nesta jornada de aprendizado com você. Se você está pronto para aprender a construir APIs web eficientes e testáveis com FastAPI, este é definitivamente o curso para você. Estou ansioso para começar a primeira aula, onde vamos configurar nosso ambiente de desenvolvimento e dar nossos primeiros passos com FastAPI e TDD!</p></div>
+<p>Dockerizar nossa aplicação FastAPI permite que ela seja executada de forma consistente em qualquer ambiente, facilitando a implantação e a distribuição. Na próxima aula, vamos aprender como podemos levar nossa aplicação para o próximo nível ao implantá-la em produção usando o Fly.io.</p></div>
 
   <hr>
 <div class="md-source-file">
@@ -920,10 +770,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
     
     
-      <script src="assets/javascripts/bundle.b4d07000.min.js"></script>
+      <script src="../assets/javascripts/bundle.b4d07000.min.js"></script>
       
     
   <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>

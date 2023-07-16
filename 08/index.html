@@ -12,6 +12,8 @@
         <link rel="prev" href="../07/">
       
       
+        <link rel="next" href="../09/">
+      
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
     
@@ -344,7 +346,7 @@
   
     <li class="md-nav__item">
       <a href="../06/" class="md-nav__link">
-        [OK] Refatorando a Estrutura do Projeto
+        [REV] Refatorando a Estrutura do Projeto
       </a>
     </li>
   
@@ -472,6 +474,19 @@
     Endpoint de listagem
   </a>
   
+    <nav class="md-nav" aria-label="Endpoint de listagem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testes-para-esse-endpoint" class="md-nav__link">
+    testes para esse endpoint
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -492,6 +507,66 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09/" class="md-nav__link">
+        [OK] Dockerizando a nossa aplicação
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10/" class="md-nav__link">
+        [OK] Automatizando os testes com Integração Contínua
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11/" class="md-nav__link">
+        [WIP] Fazendo deploy no Fly.io e configurando o PostgreSQL
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12/" class="md-nav__link">
+        [WIP] Despedida
+      </a>
     </li>
   
 
@@ -588,6 +663,19 @@
     Endpoint de listagem
   </a>
   
+    <nav class="md-nav" aria-label="Endpoint de listagem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testes-para-esse-endpoint" class="md-nav__link">
+    testes para esse endpoint
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -633,12 +721,15 @@
 <hr>
 <p>Olá a todos! Estamos de volta com mais uma aula. Hoje vamos mergulhar na criação das rotas CRUD para as nossas tarefas utilizando FastAPI. Essas operações são fundamentais para qualquer aplicação de gerenciamento de tarefas e são o coração do nosso sistema. Além disso, garantiremos que apenas o usuário que criou a tarefa possa acessá-la e modificá-la, garantindo a segurança e a privacidade dos dados. Vamos começar!</p>
 <h2 id="estrutura-inicial-do-codigo">Estrutura inicial do código</h2>
-<p>Primeiro, vamos criar um novo arquivo chamado <code>todos.py</code> dentro do diretório de <code>routers</code>:</p>
-<div class="highlight"><span class="filename">fast_zero/todos.py</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span>
+<p>Primeiro, vamos criar um novo arquivo chamado <code>todos.py</code> dentro do diretório de <code>routes</code>:</p>
+<div class="highlight"><span class="filename">fast_zero/routes/todos.py</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s1">'/todos'</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">'todos'</span><span class="p">])</span>
 </code></pre></div>
-<p>Então, vamos atualizar o arquivo <code>fast_zero/app.py</code> para incluir as rotas de tarefas que iremos criar:</p>
+<p>Neste código, criamos uma nova instância da classe <code>APIRouter</code> do FastAPI. Esta classe é usada para definir as rotas de nossa aplicação. A instância <code>router</code> funcionará como um mini aplicativo FastAPI, que poderá ter suas próprias rotas, modelos de resposta, etc.</p>
+<p>A opção <code>prefix</code> no construtor do <code>APIRouter</code> é usada para definir um prefixo comum para todas as rotas definidas neste roteador. Isso significa que todas as rotas que definirmos neste roteador começarão com <code>/todos</code>. Usamos um prefixo aqui porque queremos agrupar todas as rotas relacionadas a tarefas em um lugar. Isso torna nossa aplicação mais organizada e fácil de entender.</p>
+<p>A opção <code>tags</code> é usada para agrupar as rotas em seções no documento interativo de API gerado pelo FastAPI (como Swagger UI e ReDoc). Todas as rotas que definirmos neste roteador aparecerão na seção "todos" da documentação da API.</p>
+<p>Depois de definir o roteador, precisamos incluí-lo em nossa aplicação principal. Vamos atualizar o arquivo <code>fast_zero/app.py</code> para incluir as rotas de tarefas que iremos criar:</p>
 <div class="highlight"><span class="filename">fast_zero/app.py</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">from</span> <span class="nn">fast_zero.routes</span> <span class="kn">import</span> <span class="n">auth</span><span class="p">,</span> <span class="n">todos</span><span class="p">,</span> <span class="n">users</span>
@@ -654,6 +745,7 @@
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">def</span> <span class="nf">read_root</span><span class="p">():</span>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="k">return</span> <span class="p">{</span><span class="s1">'message'</span><span class="p">:</span> <span class="s1">'Olá Mundo!'</span><span class="p">}</span>
 </code></pre></div>
+<p>Neste código, chamamos o método <code>include_router</code> do FastAPI para cada roteador que definimos. Este método adiciona todas as rotas do roteador à nossa aplicação. Com isso, nossa aplicação agora terá todas as rotas definidas nos roteadores <code>users</code>, <code>auth</code> e <code>todos</code>.</p>
 <h2 id="implementacao-da-tabela-no-banco-de-dados">Implementação da tabela no Banco de dados</h2>
 <p>Agora, iremos implementar a tabela 'Todos' no nosso banco de dados. Esta tabela estará diretamente relacionada à tabela 'User', pois toda tarefa pertence a um usuário. Esta relação é crucial para garantir que só o usuário dono da tarefa possa acessar e modificar suas tarefas.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
@@ -702,10 +794,9 @@
 <p>O uso do tipo Enum em <code>state: Mapped[TodoState]</code> é outro ponto importante. Enum é um tipo de dado especial que permite a criação de um conjunto fixo de constantes. Neste caso, estamos utilizando para definir os possíveis estados de uma tarefa.</p>
 <p>Estes conceitos podem parecer um pouco complexos agora, mas ficarão mais claros quando começarmos a implementar os testes.</p>
 <h3 id="testando-as-novas-implementacoes-do-banco-de-dados">Testando as novas implementações do banco de dados</h3>
-<p>Agora que implementamos as novas tabelas e relações no banco de dados, é importante testar se tudo funciona como esperado. Embora a cobertura do nosso arquivo esteja em 100%, isso não significa que tudo esteja funcionando corretamente. Afinal, apenas definimos a estrutura do banco de dados, mas não testamos a lógica de como as tabelas e as relações funcionam na prática.</p>
-<p>Por isso, vamos criar um teste para verificar se a relação entre as tarefas e os usuários está a funcionar corretamente. Esse teste vai criar uma nova tarefa para um usuário e verificar se essa tarefa aparece na lista de tarefas desse usuário.</p>
+<p>Embora tenhamos 100% de cobertura de código, isso não garante que tudo esteja funcionando corretamente. Só implementamos a estrutura do banco de dados, mas não testamos a lógica de como as tabelas e as relações funcionam na prática.</p>
 <p><a class="glightbox" href="../assets/08_cobertuda_total_dos_models_mesmo_sem_testes.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="descrição" class="center shadow" src="../assets/08_cobertuda_total_dos_models_mesmo_sem_testes.png"></a></p>
-<p>Então vamos iniciar um teste para entender esse relacionamento</p>
+<p>Para isso, criamos um teste para verificar se a relação entre tarefas e usuários está funcionando corretamente. Este teste cria uma nova tarefa para um usuário e verifica se essa tarefa aparece na lista de tarefas desse usuário.</p>
 <div class="highlight"><span class="filename">tests/test_db.py</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">fast_zero.models</span> <span class="kn">import</span> <span class="n">Todo</span><span class="p">,</span> <span class="n">User</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># ...</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">def</span> <span class="nf">test_create_todo</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">):</span>
@@ -724,15 +815,15 @@
 <a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
 <a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="k">assert</span> <span class="n">todo</span> <span class="ow">in</span> <span class="n">user</span><span class="o">.</span><span class="n">todos</span>
 </code></pre></div>
-<p>{dizer que com isso podemos executar os testes}</p>
+<p>Com isso, você pode executar os testes:</p>
 <div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>task<span class="w"> </span><span class="nb">test</span><span class="w"> </span>tests/test_db.py<span class="w"> </span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># ...</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>tests/test_db.py::test_create_user_without_todos<span class="w"> </span>PASSED
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>tests/test_db.py::test_create_todo<span class="w"> </span>PASSED
 </code></pre></div>
-<p>{dizer aqui que mesmo sem testes mais excessivos, vamos começar a criar os os schemas para esse modelo e em seguida as os endpoints}</p>
+<p>Isso mostra que os testes foram bem-sucedidos. Mesmo sem testes mais extensivos, agora vamos começar a criar os esquemas para esse modelo e, em seguida, os endpoints.</p>
 <h2 id="schemas-para-todos">Schemas para Todos</h2>
-<p>{voltar a falar sobre os schemas para validação dos dados}</p>
+<p>Vamos criar dois esquemas para nosso modelo de tarefas (todos): <code>TodoSchema</code> e <code>TodoPublic</code>. </p>
 <div class="highlight"><span class="filename">fast_zero/schemas.py</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span> <span class="nn">fast_zero.models</span> <span class="kn">import</span> <span class="n">TodoState</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">#...</span>
@@ -748,8 +839,9 @@
 <a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span>
 <a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="n">state</span><span class="p">:</span> <span class="n">TodoState</span>
 </code></pre></div>
+<p><code>TodoSchema</code> será usado para validar os dados de entrada quando uma nova tarefa é criada e <code>TodoPublic</code> será usado para validar os dados de saída quando uma tarefa é retornada em um endpoint.</p>
 <h2 id="endpoint-de-criacao">Endpoint de criação</h2>
-<p>{dizer que agora vamos criar nosso primeiro endpoint. O de criação de tarefas. O POST <code>/todos</code>}</p>
+<p>Criamos o primeiro endpoint para a criação de tarefas. Este é um endpoint POST na rota '/todos'. É importante destacar que, para criar uma tarefa, um usuário precisa estar autenticado e só esse usuário autenticado será o proprietário da tarefa.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Annotated</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">Depends</span>
@@ -785,10 +877,9 @@
 <a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>
 <a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>    <span class="k">return</span> <span class="n">db_todo</span>
 </code></pre></div>
-<p>{aqui você deve criar o post. Lembrando que esse endpoint deve ser restrito somente a quem é o dono da tarefa}</p>
-<p>{dizer que vamos criar nosso primeiro teste para os todos. Temos que criar o arquivo <code>tests/test_todos.py</code>}</p>
+<p>Neste endpoint, fazemos uso da dependência <code>get_current_user</code> que garante que somente usuários autenticados possam criar tarefas, protegendo assim nossa aplicação.</p>
 <h3 id="testando-o-endpoint-de-criacao">Testando o endpoint de criação</h3>
-<p>{explicar aqui que temos que criar um novo arquivo <code>tests/test_todos.py</code> e que esse teste pode se beneficiar das fixtures que já criamos antes}</p>
+<p>Para garantir que nosso endpoint está funcionando corretamente, criamos um teste para ele. Este teste verifica se o endpoint '/todos' está criando tarefas corretamente.</p>
 <div class="highlight"><span class="filename">tests/test_todos.py</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">def</span> <span class="nf">test_create_todo</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        <span class="s1">'/todos/'</span><span class="p">,</span>
@@ -806,22 +897,22 @@
 <a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>        <span class="s1">'state'</span><span class="p">:</span> <span class="s1">'draft'</span><span class="p">,</span>
 <a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>    <span class="p">}</span>
 </code></pre></div>
-<p>{explicar que agora devemos executar esse teste para ver o resultado}</p>
+<p>No teste, fazemos uma requisição POST para o endpoint '/todos' passando um token de autenticação válido e um JSON com os dados da tarefa a ser criada. Em seguida, verificamos se a resposta contém os dados corretos da tarefa criada.</p>
+<p>Para executar este teste, você deve usar o comando abaixo no terminal:</p>
 <div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>task<span class="w"> </span><span class="nb">test</span><span class="w"> </span>tests/test_todos.py<span class="w"> </span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1"># ...</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>tests/test_todos.py::test_create_todo<span class="w"> </span>PASSED
 </code></pre></div>
-<p>{explicar que apenas com essa implementação temos os testes passando}</p>
-<hr>
-<p>{dizer que mesmo com só isso, ainda não podemos testar no swagger, pois o banco ainda não reconhece esse tabela}</p>
+<p>Com essa implementação, os testes devem passar. Porém, apesar do sucesso dos testes, nosso código ainda não está completamente pronto. Ainda é necessário criar uma migração para a tabela de tarefas no banco de dados.</p>
 <h2 id="criando-a-migracao-da-nova-tabela">Criando a migração da nova tabela</h2>
+<p>Agora que temos nosso modelo de tarefas definido, precisamos criar uma migração para adicionar a tabela de tarefas ao nosso banco de dados. Usamos o Alembic para criar e gerenciar nossas migrações. </p>
 <div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>alembic<span class="w"> </span>revision<span class="w"> </span>--autogenerate<span class="w"> </span>-m<span class="w"> </span><span class="s2">"create todos table"</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># ...</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Generating<span class="w"> </span>/&lt;caminho&gt;/fast_zero/migrations/versions/de865434f506_create_todos_table.py
 </code></pre></div>
-<p>{dizer que esse comando gerou a seguinte migração}</p>
+<p>Este comando gera um arquivo de migração, que se parece com o código abaixo:</p>
 <div class="highlight"><span class="filename">migrations/versions/de865434f506_create_todos_table.py</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">def</span> <span class="nf">upgrade</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="c1"># ### commands auto generated by Alembic - please adjust! ###</span>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="n">op</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="s1">'todos'</span><span class="p">,</span>
@@ -841,13 +932,13 @@
 <a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>    <span class="n">op</span><span class="o">.</span><span class="n">drop_table</span><span class="p">(</span><span class="s1">'todos'</span><span class="p">)</span>
 <a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a>    <span class="c1"># ### end Alembic commands ###</span>
 </code></pre></div>
-<p>{dizer que agora precisamos aplicar a migração no banco para vermos o seu efeito}</p>
+<p>Depois que a migração for criada, precisamos aplicá-la ao nosso banco de dados. Execute o comando <code>alembic upgrade head</code> para aplicar a migração.</p>
 <div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>INFO<span class="w">  </span><span class="o">[</span>alembic.runtime.migration<span class="o">]</span><span class="w"> </span>Context<span class="w"> </span>impl<span class="w"> </span>SQLiteImpl.
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>INFO<span class="w">  </span><span class="o">[</span>alembic.runtime.migration<span class="o">]</span><span class="w"> </span>Will<span class="w"> </span>assume<span class="w"> </span>non-transactional<span class="w"> </span>DDL.
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>INFO<span class="w">  </span><span class="o">[</span>alembic.runtime.migration<span class="o">]</span><span class="w"> </span>Running<span class="w"> </span>upgrade<span class="w"> </span>e018397cecf4<span class="w"> </span>-&gt;<span class="w"> </span>de865434f506,<span class="w"> </span>create<span class="w"> </span>todos<span class="w"> </span>table
 </code></pre></div>
-<p>{dizer que agora vamos checar no banco o que aconteceu}</p>
+<p>Agora que a migração foi aplicada, nosso banco de dados deve ter uma nova tabela de tarefas. Para verificar, você pode abrir o banco de dados com o comando <code>sqlite3 database.db</code> e depois executar o comando <code>.schema</code> para ver o esquema do banco de dados.</p>
 <div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">sqlite3</span><span class="w"> </span><span class="k">database</span><span class="p">.</span><span class="n">db</span><span class="w"> </span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="o">#</span><span class="w"> </span><span class="p">...</span>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">sqlite</span><span class="o">&gt;</span><span class="w"> </span><span class="p">.</span><span class="k">schema</span>
@@ -862,9 +953,67 @@
 <a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
 <a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="p">);</span>
 </code></pre></div>
-<p>{e nossa tabela foi criada com sucesso. Com isso podemos testar no swagger}</p>
+<p>Finalmente, agora que temos a tabela de tarefas em nosso banco de dados, podemos testar nosso endpoint de criação de tarefas no Swagger. Para fazer isso, execute nosso servidor FastAPI e abra o Swagger no seu navegador.</p>
 <h2 id="endpoint-de-listagem">Endpoint de listagem</h2>
-<p>...</p>
+<p>{aqui você deve criar um endpoint um pouco diferente. Além de offset e limit, precisamos fazer com que seja possível listar por título, descrição ou status usando querystrings}</p>
+<h3 id="testes-para-esse-endpoint">testes para esse endpoint</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">def</span> <span class="nf">test_list_todos</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="c1"># Create some todos</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>        <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>            <span class="s1">'/todos/'</span><span class="p">,</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>            <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Authorization'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">'</span><span class="p">},</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>            <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>                <span class="s1">'title'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Test todo </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>                <span class="s1">'description'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Test todo description </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>                <span class="s1">'state'</span><span class="p">:</span> <span class="s1">'draft'</span><span class="p">,</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>            <span class="p">},</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>        <span class="p">)</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>    <span class="c1"># Test list todos</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>        <span class="s1">'/todos/'</span><span class="p">,</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Authorization'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">'</span><span class="p">},</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>    <span class="p">)</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span> <span class="o">==</span> <span class="mi">5</span>
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="k">def</span> <span class="nf">test_list_todos_pagination</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>    <span class="c1"># Test list todos with offset and limit</span>
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>        <span class="s1">'/todos/?offset=1&amp;limit=2'</span><span class="p">,</span>
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Authorization'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">'</span><span class="p">},</span>
+<a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a>    <span class="p">)</span>
+<a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>
+<a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span> <span class="o">==</span> <span class="mi">2</span>
+<a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a>
+<a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a><span class="k">def</span> <span class="nf">test_list_todos_filter_title</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+<a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a>    <span class="c1"># Test list todos with title filter</span>
+<a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+<a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a>        <span class="s1">'/todos/?title=Test todo 1'</span><span class="p">,</span>
+<a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a>        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Authorization'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">'</span><span class="p">},</span>
+<a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a>    <span class="p">)</span>
+<a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a>
+<a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span> <span class="o">==</span> <span class="mi">1</span>
+<a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a>
+<a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a><span class="k">def</span> <span class="nf">test_list_todos_filter_description</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+<a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a>    <span class="c1"># Test list todos with description filter</span>
+<a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+<a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a>        <span class="s1">'/todos/?description=Test todo description 2'</span><span class="p">,</span>
+<a id="__codelineno-13-44" name="__codelineno-13-44" href="#__codelineno-13-44"></a>        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Authorization'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">'</span><span class="p">},</span>
+<a id="__codelineno-13-45" name="__codelineno-13-45" href="#__codelineno-13-45"></a>    <span class="p">)</span>
+<a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a>
+<a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span> <span class="o">==</span> <span class="mi">1</span>
+<a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a>
+<a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a><span class="k">def</span> <span class="nf">test_list_todos_filter_state</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+<a id="__codelineno-13-50" name="__codelineno-13-50" href="#__codelineno-13-50"></a>    <span class="c1"># Test list todos with state filter</span>
+<a id="__codelineno-13-51" name="__codelineno-13-51" href="#__codelineno-13-51"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+<a id="__codelineno-13-52" name="__codelineno-13-52" href="#__codelineno-13-52"></a>        <span class="s1">'/todos/?state=draft'</span><span class="p">,</span>
+<a id="__codelineno-13-53" name="__codelineno-13-53" href="#__codelineno-13-53"></a>        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Authorization'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">'</span><span class="p">},</span>
+<a id="__codelineno-13-54" name="__codelineno-13-54" href="#__codelineno-13-54"></a>    <span class="p">)</span>
+<a id="__codelineno-13-55" name="__codelineno-13-55" href="#__codelineno-13-55"></a>
+<a id="__codelineno-13-56" name="__codelineno-13-56" href="#__codelineno-13-56"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span> <span class="o">==</span> <span class="mi">5</span>
+</code></pre></div>
 <h2 id="commit">Commit</h2>
 <p>...</p>
 <h2 id="conclusao">Conclusão</h2>
@@ -875,7 +1024,7 @@
   <small>
     
       Última atualização:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 14, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 16, 2023</span>
       
     
   </small>
