@@ -641,8 +641,8 @@
 </ul>
 <details class="tip">
 <summary>Caso prefira ver a aula em vídeo</summary>
-<p><a class="glightbox" href="https://www.youtube.com/embed/u31qwQUeGuM" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><div class="video-container"><iframe src="https://www.youtube.com/embed/u31qwQUeGuM" style="position:relative;width:100%;height:22.172vw" frameborder="0" allowfullscreen alt="type:video"></iframe></div></a></p>
 </details>
+<p><a class="glightbox" href="https://www.youtube.com/embed/u31qwQUeGuM" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><div class="video-container"><iframe src="https://www.youtube.com/embed/u31qwQUeGuM" style="position:relative;width:100%;height:22.172vw" frameborder="0" allowfullscreen alt="type:video"></iframe></div></a></p>
 <p><a class="md-button" href="#">Aula <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg></span></a>
 <a class="md-button" href="#">Slides <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64v384c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zm192 0v128h128L256 0zM136 240h68c42 0 76 34 76 76s-34 76-76 76h-44v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V264c0-13.3 10.7-24 24-24zm68 104c15.5 0 28-12.5 28-28s-12.5-28-28-28h-44v56h44z"></path></svg></span></a>
 <a class="md-button" href="https://github.com/dunossauro/fastapi-do-zero/tree/main/codigo_das_aulas/08/">Código <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 640 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span></a></p>
@@ -675,16 +675,27 @@
 <li><code>RUN poetry config installer.max-workers 10</code>: Configura o Poetry para usar até 10 workers ao instalar pacotes.</li>
 <li><code>RUN poetry install --no-interaction --no-ansi</code>: Instala as dependências do nosso projeto sem interação e sem cores no output.</li>
 <li><code>EXPOSE 8000</code>: Informa ao Docker que o contêiner vai escutar na porta 8000.</li>
-<li><code>CMD [ "poetry", "run", "uvicorn", "--host", "0.0.0.0", "fast_zero.app:app" ]</code>: Define o comando que será executado quando o contêiner for iniciado. Neste caso, estamos iniciando nossa aplicação FastAPI usando Uvicorn.</li>
+<li><code>CMD [ "poetry", "run", "uvicorn", "--host", "0.0.0.0", "fast_zero.app:app" ]</code>: Define o comando que será executado quando o contêiner for iniciado.</li>
 </ol>
+<p>Vamos entender melhor esse último comando:</p>
+<ul>
+<li><code>poetry run</code> define o comando que será executado dentro do ambiente virtual criado pelo Poetry</li>
+<li><code>uvicorn</code> é o servidor ASGI que usamos para rodar nossa aplicação.</li>
+<li><code>--host</code> define o host que o servidor vai escutar</li>
+<li><code>fast_zero.app:app</code> define o <code>&lt;módulo python&gt;:&lt;objeto&gt;</code> que o servidor vai executar.</li>
+</ul>
 <h2 id="criando-a-imagem">Criando a imagem</h2>
 <p>Para criar uma imagem Docker a partir do Dockerfile, usamos o comando <code>docker build</code>. O comando a seguir cria uma imagem chamada "fast_zero":</p>
 <div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span><span class="s2">"fast_zero"</span><span class="w"> </span>.
 </code></pre></div>
-<p>Este comando lê o Dockerfile no diretório atual (indicado pelo <code>.</code>) e cria uma imagem chamada "fast_zero".</p>
+<p>Este comando lê o Dockerfile no diretório atual (indicado pelo <code>.</code>) e cria uma imagem com a tag "fast_zero", (indicada pelo <code>-t</code>).</p>
+<p>Vamos então verificar se a imagem foi criada com sucesso usando o comando:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>images
+</code></pre></div>
+<p>Este comando lista todas as imagens Docker disponíveis no seu sistema.</p>
 <h2 id="rodando-o-container">Rodando o container</h2>
-<p>Para rodar o contêiner, usamos o comando <code>docker run</code>. O comando a seguir inicia um contêiner da imagem "fast_zero" e mapeia a porta 8000 do contêiner para a porta 8000 do host:</p>
-<div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>run<span class="w"> </span>fast_zero:latest<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000
+<p>Para rodar o contêiner, usamos o comando <code>docker run</code>, indicando o nome da imagem que queremos executar e a tag que queremos usar <code>&lt;nome_da_imagem&gt;:&lt;tag&gt;</code> e utilizamos a flag <code>-p</code> para mapear a porta do host para a porta do contêiner <code>&lt;porta_do_host&gt;:&lt;porta_do_contêiner&gt;</code>. Portanto, teremos o seguinte comando:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>run<span class="w"> </span>fast_zero:latest<span class="w"> </span>-p<span class="w"> </span><span class="m">8000</span>:8000
 </code></pre></div>
 <p>Este comando iniciará nossa aplicação dentro de um contêiner Docker, que estará escutando na porta 8000.</p>
 <h2 id="commit">Commit</h2>
