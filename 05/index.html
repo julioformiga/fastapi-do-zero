@@ -21,7 +21,7 @@
     
     
       
-        <title>[REV] Autenticação e Autorização com JWT - FastAPI do Zero</title>
+        <title>[OK] Autenticação e Autorização com JWT - FastAPI do Zero</title>
       
     
     
@@ -55,7 +55,7 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="[REV] Autenticação e Autorização com JWT - FastAPI do Zero" >
+        <meta  property="og:title"  content="[OK] Autenticação e Autorização com JWT - FastAPI do Zero" >
       
         <meta  property="og:description"  content="None" >
       
@@ -71,7 +71,7 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="[REV] Autenticação e Autorização com JWT - FastAPI do Zero" >
+        <meta  name="twitter:title"  content="[OK] Autenticação e Autorização com JWT - FastAPI do Zero" >
       
         <meta  name="twitter:description"  content="None" >
       
@@ -112,7 +112,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rev-autenticacao-e-autorizacao-com-jwt" class="md-skip">
+        <a href="#ok-autenticacao-e-autorizacao-com-jwt" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -146,7 +146,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              [REV] Autenticação e Autorização com JWT
+              [OK] Autenticação e Autorização com JWT
             
           </span>
         </div>
@@ -366,12 +366,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          [REV] Autenticação e Autorização com JWT
+          [OK] Autenticação e Autorização com JWT
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        [REV] Autenticação e Autorização com JWT
+        [OK] Autenticação e Autorização com JWT
       </a>
       
         
@@ -485,6 +485,13 @@
   
     <nav class="md-nav" aria-label="Protegendo os Endpoints">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aplicacao-da-protecao-ao-endpoint" class="md-nav__link">
+    Aplicação da proteção ao endpoint
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#atualizando-os-testes" class="md-nav__link">
@@ -749,6 +756,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#aplicacao-da-protecao-ao-endpoint" class="md-nav__link">
+    Aplicação da proteção ao endpoint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#atualizando-os-testes" class="md-nav__link">
     Atualizando os Testes
   </a>
@@ -792,12 +806,7 @@
   
 
 
-<div><h1 id="rev-autenticacao-e-autorizacao-com-jwt">[REV] Autenticação e Autorização com JWT</h1>
-<p><strong>Revisão</strong></p>
-<ul>
-<li>Explicar melhor o JWT</li>
-<li>Explicar melhor os modelos de entrada e resposta do token</li>
-</ul>
+<div><h1 id="ok-autenticacao-e-autorizacao-com-jwt">[OK] Autenticação e Autorização com JWT</h1>
 <hr>
 <p>Objetivos da Aula:</p>
 <ul>
@@ -1157,6 +1166,11 @@
 <a id="__codelineno-16-43" name="__codelineno-16-43" href="#__codelineno-16-43"></a>
 <a id="__codelineno-16-44" name="__codelineno-16-44" href="#__codelineno-16-44"></a>    <span class="k">return</span> <span class="n">user</span>
 </code></pre></div>
+<p>Aqui, a função <code>get_current_user</code> é definida como assíncrona, indicando que ela pode realizar operações de IO (como consultar um banco de dados) de forma não bloqueante. Esta função aceita dois argumentos: <code>session</code> e <code>token</code>. O <code>session</code> é obtido através da função <code>get_session</code> (não mostrada aqui), que deve retornar uma sessão de banco de dados ativa. O <code>token</code> é obtido do header de autorização da requisição, que é esperado ser do tipo Bearer (indicado pelo esquema OAuth2).</p>
+<p>A variável <code>credentials_exception</code> é definida como uma exceção HTTP que será lançada sempre que houver um problema com as credenciais fornecidas pelo usuário. O status 401 indica que a autenticação falhou e a mensagem "Could not validate credentials" é retornada ao cliente. Além disso, um cabeçalho 'WWW-Authenticate' é incluído na resposta, indicando que o cliente deve fornecer autenticação.</p>
+<p>No bloco <code>try</code>, tentamos decodificar o token JWT usando a chave secreta e o algoritmo especificado. O token decodificado é armazenado na variável <code>payload</code>. Extraímos o campo 'sub' (normalmente usado para armazenar o identificador do usuário no token JWT) e verificamos se ele existe. Se não, lançamos a exceção <code>credentials_exception</code>. Em seguida, criamos um objeto <code>TokenData</code> com o username.</p>
+<p>Por fim, realizamos uma consulta ao banco de dados para encontrar o usuário com o e-mail correspondente ao username contido no token. <code>session.scalar</code> é usado para retornar a primeira coluna do primeiro resultado da consulta. sS nenhum usuário for encontrado, lançamos a exceção <code>credentials_exception</code>. Se um usuário for encontrado, retornamos esse usuário.</p>
+<h3 id="aplicacao-da-protecao-ao-endpoint">Aplicação da proteção ao endpoint</h3>
 <p>Primeiro, vamos aplicar a autenticação no endpoint PUT. Se o <code>user_id</code> da rota não corresponder ao <code>id</code> do usuário autenticado, retornaremos um erro 400. Se tudo estiver correto, o usuário será atualizado normalmente.</p>
 <div class="highlight"><span class="filename">fast_zero/app.py</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kn">from</span> <span class="nn">fast_zero.security</span> <span class="kn">import</span> <span class="p">(</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="n">create_access_token</span><span class="p">,</span>
@@ -1324,7 +1338,7 @@
   <small>
     
       Última atualização:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 17, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 18, 2023</span>
       
     
   </small>
