@@ -6,6 +6,8 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Entendimento básico sobre API, HTTP, JSON e a estrutura do projeto">
+      
       
       
         <link rel="canonical" href="https://fastapidozero.dunossauro.com/02/">
@@ -21,7 +23,7 @@
     
     
       
-        <title>[OK] Estruturando seu Projeto e Criando Rotas CRUD - FastAPI do Zero</title>
+        <title>Estruturando o Projeto e Criando Rotas CRUD - FastAPI do Zero</title>
       
     
     
@@ -55,9 +57,9 @@
       
         <meta  property="og:type"  content="website" >
       
-        <meta  property="og:title"  content="[OK] Estruturando seu Projeto e Criando Rotas CRUD - FastAPI do Zero" >
+        <meta  property="og:title"  content="Estruturando o Projeto e Criando Rotas CRUD - FastAPI do Zero" >
       
-        <meta  property="og:description"  content="None" >
+        <meta  property="og:description"  content="Entendimento básico sobre API, HTTP, JSON e a estrutura do projeto" >
       
         <meta  property="og:image"  content="https://fastapidozero.dunossauro.com/assets/images/social/02.png" >
       
@@ -71,9 +73,9 @@
       
         <meta  name="twitter:card"  content="summary_large_image" >
       
-        <meta  name="twitter:title"  content="[OK] Estruturando seu Projeto e Criando Rotas CRUD - FastAPI do Zero" >
+        <meta  name="twitter:title"  content="Estruturando o Projeto e Criando Rotas CRUD - FastAPI do Zero" >
       
-        <meta  name="twitter:description"  content="None" >
+        <meta  name="twitter:description"  content="Entendimento básico sobre API, HTTP, JSON e a estrutura do projeto" >
       
         <meta  name="twitter:image"  content="https://fastapidozero.dunossauro.com/assets/images/social/02.png" >
       
@@ -112,7 +114,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ok-estruturando-seu-projeto-e-criando-rotas-crud" class="md-skip">
+        <a href="#estruturando-o-projeto-e-criando-rotas-crud" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -146,7 +148,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              [OK] Estruturando seu Projeto e Criando Rotas CRUD
+              Estruturando o Projeto e Criando Rotas CRUD
             
           </span>
         </div>
@@ -321,12 +323,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          [OK] Estruturando seu Projeto e Criando Rotas CRUD
+          Estruturando o Projeto e Criando Rotas CRUD
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        [OK] Estruturando seu Projeto e Criando Rotas CRUD
+        Estruturando o Projeto e Criando Rotas CRUD
       </a>
       
         
@@ -924,7 +926,7 @@
   
 
 
-<div><h1 id="ok-estruturando-seu-projeto-e-criando-rotas-crud">[OK] Estruturando seu Projeto e Criando Rotas CRUD</h1>
+<div><h1 id="estruturando-o-projeto-e-criando-rotas-crud">Estruturando o Projeto e Criando Rotas CRUD</h1>
 <hr>
 <p>Objetivos dessa aula:</p>
 <ul>
@@ -942,11 +944,11 @@
 <a class="md-button" href="#">Slides <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64v384c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zm192 0v128h128L256 0zM136 240h68c42 0 76 34 76 76s-34 76-76 76h-44v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V264c0-13.3 10.7-24 24-24zm68 104c15.5 0 28-12.5 28-28s-12.5-28-28-28h-44v56h44z"></path></svg></span></a>
 <a class="md-button" href="https://github.com/dunossauro/fastapi-do-zero/tree/main/codigo_das_aulas/02/">Código <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 640 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path></svg></span></a></p>
 <hr>
-<p>Boas vindas de volta à nossa série de cursos "FastAPI do Zero: Criando um Projeto com Bancos de Dados, Testes e Deploy". Hoje, na Aula 3, vamos avançar na estruturação do nosso projeto FastAPI e implementar todas as rotas CRUD (Criar, Ler, Atualizar e Deletar) para o nosso recurso de usuário.</p>
+<p>Boas-vindas de volta à nossa série de cursos "FastAPI do Zero: Criando um Projeto com Bancos de Dados, Testes e Deploy". Hoje, na Aula 3, avançaremos na estruturação do nosso projeto FastAPI e implementar todas as rotas CRUD (Criar, Ler, Atualizar e Deletar) para o nosso recurso de usuário.</p>
 <h2 id="o-que-e-uma-api">O que é uma API?</h2>
 <p>Acrônimo de Application Programming Interface (Interface de Programação de Aplicações), uma API é um conjunto de regras e protocolos que permitem a comunicação entre diferentes softwares. As APIs servem como uma ponte entre diferentes programas, permitindo que eles se comuniquem e compartilhem informações de maneira eficiente e segura.</p>
 <p>No mundo moderno, as APIs geralmente comunicam usando o formato de dados JSON (JavaScript Object Notation), que é uma maneira leve e eficiente de transmitir dados entre a API e o cliente.</p>
-<p>As APIs são fundamentais no mundo da programação moderna, pois permitem a interação entre diferentes sistemas, independentemente de como foram projetados ou em que linguagem foram escritos.</p>
+<p>As APIs são fundamentais no mundo da programação moderna, ao permitirem a interação entre diferentes sistemas, independentemente de como foram projetados ou em que linguagem foram escritos.</p>
 <h2 id="o-que-e-http">O que é HTTP?</h2>
 <p>HTTP, ou Hypertext Transfer Protocol (Protocolo de Transferência de Hipertexto), é o protocolo fundamental na web para a transferência de dados e comunicação entre clientes e servidores.</p>
 <p>No contexto das APIs, o HTTP é o protocolo que permite a comunicação entre o cliente (geralmente o navegador de um usuário, mas pode ser qualquer coisa que saiba como fazer solicitações HTTP) e o servidor onde a API está hospedada. As informações entre o cliente e o servidor são trocadas na forma de JSON, tornando-se uma linguagem universal para a troca de informações na web.</p>
@@ -1321,7 +1323,7 @@
 </code></pre></div>
 <p>E pronto! As alterações estão seguras no histórico do git, e podemos continuar com o próximo passo do projeto.</p>
 <h2 id="conclusao">Conclusão</h2>
-<p>Com a implementação bem-sucedida das rotas CRUD, demos um passo significativo na construção de uma API robusta e funcional com FastAPI. Agora temos a capacidade de manipular usuários - criar, ler, atualizar e excluir - o que é fundamental para muitos sistemas de informação.</p>
+<p>Com a implementação bem-sucedida das rotas CRUD, demos um passo significativo na construção de uma API robusta e funcional com FastAPI. Agora podemos manipular usuários - criar, ler, atualizar e excluir - o que é fundamental para muitos sistemas de informação.</p>
 <p>O papel dos testes em cada etapa não pode ser subestimado. Testes não apenas nos ajudam a assegurar que nosso código está funcionando como esperado, mas também nos permitem refinar nossas soluções e detectar problemas potenciais antes que eles afetem a funcionalidade geral do nosso sistema. Nunca subestime a importância de executar seus testes sempre que fizer uma alteração em seu código!</p>
 <p>Até aqui, no entanto, trabalhamos com um "banco de dados" provisório, na forma de uma lista Python, que é volátil e não persiste os dados de uma execução do aplicativo para outra. Para nosso aplicativo ser útil em um cenário do mundo real, precisamos armazenar nossos dados de forma mais duradoura. É aí que os bancos de dados entram.</p>
 <p>No próximo tópico, vamos explorar uma das partes mais críticas de qualquer aplicativo - a conexão e interação com um banco de dados. Vamos aprender a integrar nosso aplicativo FastAPI com um banco de dados real, permitindo a persistência de nossos dados de usuário entre as sessões do aplicativo.</p></div>
@@ -1331,7 +1333,7 @@
   <small>
     
       Última atualização:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 13, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 18, 2023</span>
       
     
   </small>
