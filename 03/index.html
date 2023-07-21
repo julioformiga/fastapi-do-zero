@@ -391,6 +391,20 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#criando-uma-fixture-para-o-banco-de-dados" class="md-nav__link">
+    Criando uma fixture para o banco de dados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criando-um-teste-para-a-nossa-tabela" class="md-nav__link">
+    Criando um teste para a nossa tabela
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#executando-o-teste" class="md-nav__link">
     Executando o teste
   </a>
@@ -649,6 +663,20 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#criando-uma-fixture-para-o-banco-de-dados" class="md-nav__link">
+    Criando uma fixture para o banco de dados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criando-um-teste-para-a-nossa-tabela" class="md-nav__link">
+    Criando um teste para a nossa tabela
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#executando-o-teste" class="md-nav__link">
     Executando o teste
   </a>
@@ -815,12 +843,21 @@
 <h2 id="escrevendo-os-testes-para-as-tabelas">Escrevendo os Testes para as Tabelas</h2>
 <p>Ao desenvolver software, é uma boa prática criar testes para cada nova funcionalidade implementada. Neste caso, depois de criar nosso modelo de usuário, precisamos garantir que ele funcione como esperado. Para isso, vamos criar dois novos arquivos de teste, <code>conftest.py</code> e <code>test_db.py</code>.</p>
 <p>O arquivo <code>conftest.py</code> é usado pelo pytest para definir preparações necessárias antes da execução dos testes ou configurações comuns a vários testes. É um lugar centralizado para as chamadas fixtures.</p>
+<details class="info">
+<summary>Caso fixtures sejam uma novidade para você</summary>
+<p>Existe uma live de python onde conversamos especialmente sobre fixtures
+<a class="glightbox" href="https://www.youtube.com/embed/sidi9Z_IkLU" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><div class="video-container"><iframe src="https://www.youtube.com/embed/sidi9Z_IkLU" style="position:relative;width:100%;height:22.172vw" frameborder="0" allowfullscreen alt="type:video"></iframe></div></a></p>
+<p><a class="md-button" href="https://youtu.be/sidi9Z_IkLU"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg></span> Link direto </a></p>
+</details>
 <p>Já o arquivo <code>test_db.py</code> é onde vamos escrever os testes para nosso modelo de usuário. Isso ajuda a garantir que nossas tabelas estão sendo criadas corretamente e que podem armazenar e recuperar informações conforme esperado.</p>
 <p>Para criar esses arquivos, execute o seguinte comando:</p>
 <div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>touch<span class="w"> </span>tests/test_db.py
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>touch<span class="w"> </span>tests/conftest.py
 </code></pre></div>
-<p>No arquivo <code>conftest.py</code>, vamos introduzir uma fixture aos nossos testes pytest chamada "session". As fixtures do pytest são funções que são executadas antes de cada teste para fornecer um ambiente de teste consistente. Neste caso, a fixture "session" está criando uma nova instância do banco de dados SQLite em memória para cada teste. Isso permite que cada teste funcione isoladamente, garantindo que eles não interfiram uns nos outros.</p>
+<h3 id="criando-uma-fixture-para-o-banco-de-dados">Criando uma fixture para o banco de dados</h3>
+<p>No arquivo <code>conftest.py</code>, vamos introduzir uma fixture aos nossos testes pytest chamada "session". uma fixture é uma função que permite definir e reutilizar configurações de preparação para testes ou outras funções. Elas são úteis para quando você tem partes do código que precisam ser reutilizadas em vários testes.</p>
+<p>As fixtures são declaradas com a anotação <code>@pytest.fixture</code>. Uma vez declarada, a fixture pode ser injetada em funções de teste, métodos de classe de teste, outras fixtures ou até mesmo módulos, passando-as como parâmetros.</p>
+<p>Vamos criar uma fixture para a conexão com o banco de dados chamada <code>session</code>:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">tests/conftest.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
@@ -859,6 +896,30 @@
 <a id="__codelineno-5-18" name="__codelineno-5-18"></a>    <span class="k">yield</span> <span class="n">Session</span><span class="p">()</span>
 <a id="__codelineno-5-19" name="__codelineno-5-19"></a>    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">drop_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
+<p>O que cada linha da fixture faz?</p>
+<ol>
+<li>
+<p>Em <code class="highlight"><span class="n">create_engine</span><span class="p">(</span><span class="s1">'sqlite:///:memory:'</span><span class="p">,</span> <span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s1">'check_same_thread'</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span> <span class="n">poolclass</span><span class="o">=</span><span class="n">StaticPool</span><span class="p">)</span></code>: estamos criando um mecanismo de banco de dados SQLite em memória usando o SQLAlchemy. Este mecanismo será usado para criar uma sessão de banco de dados para nossos testes.</p>
+<ul>
+<li>Estamos usando <code class="highlight"><span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s1">'check_same_thread'</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span></code> porque SQLite tem algumas limitações quando usado em diferentes threads.</li>
+<li>E o <code class="highlight"><span class="n">poolclass</span><span class="o">=</span><span class="n">StaticPool</span></code> significa que a mesma conexão será reutilizada para toda a duração do teste.</li>
+</ul>
+</li>
+<li>
+<p><code class="highlight"><span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">autocommit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">autoflush</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span></code>: Aqui estamos criando uma fábrica de sessões que será usada para criar sessões de banco de dados para nossos testes. Definimos <code>autocommit=False</code> para que possamos controlar quando as transações são commitadas e <code>autoflush=False</code> para que o SQLAlchemy não tente automaticamente flush (isto é, sincronizar o estado da sessão com o banco de dados) a cada operação.</p>
+</li>
+<li>
+<p><code class="highlight"><span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span></code>: Estamos criando todas as tabelas no banco de dados de teste. Isso é feito antes de cada teste que usa a fixture <code>session</code>.</p>
+</li>
+<li>
+<p><code class="highlight"><span class="k">yield</span> <span class="n">Session</span><span class="p">()</span></code>: Estamos produzindo uma instância de Session que será injetada em cada teste que solicita a fixture <code>session</code>. Essa sessão será usada para interagir com o banco de dados de teste.</p>
+</li>
+<li>
+<p><code class="highlight"><span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">drop_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span></code>: Finalmente, após cada teste que usa a fixture <code>session</code>, todas as tabelas do banco de dados de teste são eliminadas. Isso garante que cada teste é executado contra um banco de dados limpo.</p>
+</li>
+</ol>
+<p>Em resumo, esta fixture está configurando e limpando um banco de dados de teste para cada teste que o solicita. Isso garante que cada teste é isolado e tem seu próprio ambiente de banco de dados limpo para trabalhar. Isso é uma boa prática em testes de unidade, onde queremos que cada teste seja independente e não afete os outros.</p>
+<h3 id="criando-um-teste-para-a-nossa-tabela">Criando um teste para a nossa tabela</h3>
 <p>Agora, no arquivo <code>test_db.py</code>, vamos escrever um teste para a criação de um usuário. Este teste adiciona um novo usuário ao banco de dados, faz commit das mudanças, e depois verifica se o usuário foi devidamente criado consultando-o pelo nome de usuário. Se o usuário foi criado corretamente, o teste passa. Caso contrário, o teste falha, indicando que há algo errado com nossa função de criação de usuário.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">tests/test_db.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
@@ -1092,7 +1153,7 @@
   <small>
     
       Última atualização:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 20, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 21, 2023</span>
       
     
   </small>
