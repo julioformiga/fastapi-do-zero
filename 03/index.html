@@ -376,6 +376,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#o-basico-sobre-sqlalchemy" class="md-nav__link">
+    O básico sobre SQLAlchemy
+  </a>
+  
+    <nav class="md-nav" aria-label="O básico sobre SQLAlchemy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#engine" class="md-nav__link">
+    Engine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session" class="md-nav__link">
+    Session
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#definindo-os-modelos-de-dados-com-sqlalchemy" class="md-nav__link">
     Definindo os Modelos de Dados com SQLAlchemy
   </a>
@@ -383,23 +410,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#escrevendo-os-testes-para-as-tabelas" class="md-nav__link">
-    Escrevendo os Testes para as Tabelas
+  <a href="#testando-as-tabelas" class="md-nav__link">
+    Testando as Tabelas
   </a>
   
-    <nav class="md-nav" aria-label="Escrevendo os Testes para as Tabelas">
+    <nav class="md-nav" aria-label="Testando as Tabelas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#antes-de-escrever-os-testes" class="md-nav__link">
+    Antes de Escrever os Testes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#criando-uma-fixture-para-o-banco-de-dados" class="md-nav__link">
-    Criando uma fixture para o banco de dados
+    Criando uma Fixture para o Banco de Dados
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#criando-um-teste-para-a-nossa-tabela" class="md-nav__link">
-    Criando um teste para a nossa tabela
+    Criando um Teste para a Nossa Tabela
   </a>
   
 </li>
@@ -648,6 +682,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#o-basico-sobre-sqlalchemy" class="md-nav__link">
+    O básico sobre SQLAlchemy
+  </a>
+  
+    <nav class="md-nav" aria-label="O básico sobre SQLAlchemy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#engine" class="md-nav__link">
+    Engine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session" class="md-nav__link">
+    Session
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#definindo-os-modelos-de-dados-com-sqlalchemy" class="md-nav__link">
     Definindo os Modelos de Dados com SQLAlchemy
   </a>
@@ -655,23 +716,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#escrevendo-os-testes-para-as-tabelas" class="md-nav__link">
-    Escrevendo os Testes para as Tabelas
+  <a href="#testando-as-tabelas" class="md-nav__link">
+    Testando as Tabelas
   </a>
   
-    <nav class="md-nav" aria-label="Escrevendo os Testes para as Tabelas">
+    <nav class="md-nav" aria-label="Testando as Tabelas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#antes-de-escrever-os-testes" class="md-nav__link">
+    Antes de Escrever os Testes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#criando-uma-fixture-para-o-banco-de-dados" class="md-nav__link">
-    Criando uma fixture para o banco de dados
+    Criando uma Fixture para o Banco de Dados
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#criando-um-teste-para-a-nossa-tabela" class="md-nav__link">
-    Criando um teste para a nossa tabela
+    Criando um Teste para a Nossa Tabela
   </a>
   
 </li>
@@ -808,12 +876,29 @@
 <div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>poetry<span class="w"> </span>add<span class="w"> </span>pydantic-settings
 </code></pre></div>
 <p>Agora estamos prontos para mergulhar na configuração do nosso banco de dados! Vamos em frente.</p>
+<h2 id="o-basico-sobre-sqlalchemy">O básico sobre SQLAlchemy</h2>
+<p>SQLAlchemy é uma biblioteca Python versátil, concebida para intermediar a interação entre Python e bancos de dados relacionais, como MySQL, PostgreSQL e SQLite. A biblioteca é constituída por duas partes principais: o Core e o ORM (Object Relational Mapper).</p>
+<ul>
+<li>
+<p><strong>Core</strong>: O Core do SQLAlchemy disponibiliza uma interface SQL abstrata, que possibilita a manipulação de bancos de dados relacionais de maneira segura, alinhada com as convenções do Python. Através do Core, é possível construir, analisar e executar instruções SQL, além de conectar-se a diversos tipos de bancos de dados utilizando a mesma API.</p>
+</li>
+<li>
+<p><strong>ORM</strong>: ORM, ou Mapeamento Objeto-Relacional, é uma técnica que facilita a comunicação entre o código orientado a objetos e bancos de dados relacionais. Com o ORM do SQLAlchemy, os desenvolvedores podem interagir com o banco de dados utilizando classes e objetos Python, eliminando a necessidade de escrever instruções SQL diretamente.</p>
+</li>
+</ul>
+<p>Além do Core e do ORM, o SQLAlchemy conta com outros componentes cruciais que serão foco desta aula, a Engine e a Session:</p>
+<h3 id="engine">Engine</h3>
+<p>A 'Engine' do SQLAlchemy é o ponto de contato com o banco de dados, estabelecendo e gerenciando as conexões. Ela é instanciada através da função <code>create_engine()</code>, que recebe as credenciais do banco de dados, o endereço de conexão (URI) e configura o pool de conexões.</p>
+<h3 id="session">Session</h3>
+<p>Quanto à persistência de dados e consultas ao banco de dados utilizando o ORM, a Session é a principal interface. Ela atua como um intermediário entre o aplicativo Python e o banco de dados, mediada pela Engine. A Session é encarregada de todas as transações, fornecendo uma API para conduzi-las.</p>
+<p>Agora que conhecemos a Engine e a Session, vamos explorar a definição de modelos de dados.</p>
 <h2 id="definindo-os-modelos-de-dados-com-sqlalchemy">Definindo os Modelos de Dados com SQLAlchemy</h2>
-<p>O primeiro passo é definir nosso modelo de usuário. Um modelo de dados é a representação de como nossos dados serão armazenados no banco de dados. Neste caso, o modelo <code>User</code> representará a tabela <code>users</code> em nosso banco de dados.</p>
-<p>Vamos criar um novo arquivo <code>models.py</code> no diretório <code>fast_zero</code>.</p>
+<p>Os modelos de dados definem a estrutura de como os dados serão armazenados no banco de dados. No ORM do SQLAlchemy, esses modelos são definidos como classes Python que herdam de uma classe base comum. A classe base é criada a partir de <code>DeclarativeBase</code>.</p>
+<p>Cada classe que herda da classe base é automaticamente mapeada para uma tabela no banco de dados. Adicionalmente, a classe base inclui um objeto de metadados que é uma coleção de todas as tabelas que foram declaradas. Este objeto é utilizado para gerenciar operações como criação, modificação e exclusão de tabelas.</p>
+<p>Vamos agora definir nosso modelo <code>User</code>. No diretório <code>fast_zero</code>, crie um novo arquivo chamado <code>models.py</code>.</p>
 <div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>touch<span class="w"> </span>fast_zero/models.py
 </code></pre></div>
-<p>Adicione o seguinte código no arquivo <code>models.py</code>:</p>
+<p>Inclua o seguinte código no arquivo <code>models.py</code>:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">fast_zero/models.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
@@ -846,22 +931,35 @@
 <a id="__codelineno-3-15" name="__codelineno-3-15"></a>    <span class="n">password</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 <a id="__codelineno-3-16" name="__codelineno-3-16"></a>    <span class="n">email</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="escrevendo-os-testes-para-as-tabelas">Escrevendo os Testes para as Tabelas</h2>
-<p>Ao desenvolver software, é uma boa prática criar testes para cada nova funcionalidade implementada. Neste caso, depois de criar nosso modelo de usuário, precisamos garantir que ele funcione como esperado. Para isso, vamos criar dois novos arquivos de teste, <code>conftest.py</code> e <code>test_db.py</code>.</p>
-<p>O arquivo <code>conftest.py</code> é usado pelo pytest para definir preparações necessárias antes da execução dos testes ou configurações comuns a vários testes. É um lugar centralizado para as chamadas fixtures.</p>
+<p>Aqui, <code>Mapped</code> refere-se a um atributo Python que é associado (ou mapeado) a uma coluna específica em uma tabela de banco de dados. Por exemplo, <code>Mapped[int]</code> indica que este atributo é um inteiro que será mapeado para uma coluna correspondente em uma tabela de banco de dados. Da mesma forma, <code>Mapped[str]</code> se referiria a um atributo de string que seria mapeado para uma coluna de string correspondente. Esta abordagem permite ao SQLAlchemy realizar a conversão entre os tipos de dados Python e os tipos de dados do banco de dados, além de oferecer uma interface Pythonica para a interação com o banco de dados.</p>
+<h2 id="testando-as-tabelas">Testando as Tabelas</h2>
+<p>Ao desenvolver software, é uma boa prática criar testes para cada nova funcionalidade implementada. Após a criação do nosso modelo de usuário, precisamos garantir seu funcionamento conforme esperado. Para isso, vamos criar dois arquivos de teste: <code>conftest.py</code> e <code>test_db.py</code>.</p>
+<p>O arquivo <code>conftest.py</code> é utilizado pelo pytest para definir preparativos necessários antes da execução dos testes ou configurações comuns a diversos testes. Ele centraliza as chamadas para as fixtures.</p>
 <details class="info">
-<summary>Caso fixtures sejam uma novidade para você</summary>
-<p>Existe uma live de python onde conversamos especialmente sobre fixtures
+<summary>Se fixtures são uma novidade para você</summary>
+<p>Existe uma live de Python onde discutimos especificamente sobre fixtures
 <a class="glightbox" href="https://www.youtube.com/embed/sidi9Z_IkLU" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><div class="video-container"><iframe src="https://www.youtube.com/embed/sidi9Z_IkLU" style="position:relative;width:100%;height:22.172vw" frameborder="0" allowfullscreen alt="type:video"></iframe></div></a></p>
 <p><a class="md-button" href="https://youtu.be/sidi9Z_IkLU"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg></span> Link direto </a></p>
 </details>
-<p>Já o arquivo <code>test_db.py</code> é onde vamos escrever os testes para nosso modelo de usuário. Isso ajuda a garantir que nossas tabelas estão sendo criadas corretamente e que podem armazenar e recuperar informações conforme esperado.</p>
+<p>Por sua vez, o arquivo <code>test_db.py</code> será onde escreveremos os testes para nosso modelo de usuário. Isso ajudará a garantir que nossas tabelas estejam sendo criadas corretamente e que possam armazenar e recuperar informações conforme esperado.</p>
 <p>Para criar esses arquivos, execute o seguinte comando:</p>
 <div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>touch<span class="w"> </span>tests/test_db.py
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>touch<span class="w"> </span>tests/conftest.py
 </code></pre></div>
-<h3 id="criando-uma-fixture-para-o-banco-de-dados">Criando uma fixture para o banco de dados</h3>
-<p>No arquivo <code>conftest.py</code>, vamos introduzir uma fixture aos nossos testes pytest chamada "session". uma fixture é uma função que permite definir e reutilizar configurações de preparação para testes ou outras funções. Elas são úteis para quando você tem partes do código que precisam ser reutilizadas em vários testes.</p>
+<h3 id="antes-de-escrever-os-testes">Antes de Escrever os Testes</h3>
+<p>A essa altura, se estivéssemos buscando apenas cobertura, poderíamos simplesmente testar utilizando o modelo, e isso seria suficiente. No entanto, queremos verificar se toda a nossa interação com o banco de dados ocorrerá com sucesso. Isso inclui saber se os tipos de dados na tabela foram mapeados corretamente, se é possível interagir com o banco de dados, se o ORM está estruturado adequadamente com a classe base. Precisamos garantir que todo esse esquema funcione.</p>
+<pre class="mermaid"><code>graph
+  A[Aplicativo Python] -- utiliza --&gt; B[SQLAlchemy ORM]
+  B -- fornece --&gt; D[Session]
+  D -- interage com --&gt; C[Modelos]
+  C -- mapeados para --&gt; G[Tabelas no Banco de Dados]
+  D -- depende de --&gt; E[Engine]
+  E -- conecta-se com --&gt; F[Banco de Dados]
+  C -- associa-se a --&gt; H[Metadata]
+  H -- mantém informações de --&gt; G[Tabelas no Banco de Dados]</code></pre>
+<p>Portanto, criaremos uma fixture para que possamos usar todo esse esquema sempre que necessário.</p>
+<h3 id="criando-uma-fixture-para-o-banco-de-dados">Criando uma Fixture para o Banco de Dados</h3>
+<p>No arquivo <code>conftest.py</code>, vamos introduzir uma fixture chamada "session" aos nossos testes pytest. Uma fixture é uma função que permite definir e reutilizar configurações de preparação para testes ou outras funções. Elas são úteis quando se tem partes do código que precisam ser reutilizadas em vários testes.</p>
 <p>As fixtures são declaradas com a anotação <code>@pytest.fixture</code>. Uma vez declarada, a fixture pode ser injetada em funções de teste, métodos de classe de teste, outras fixtures ou até mesmo módulos, passando-as como parâmetros.</p>
 <p>Vamos criar uma fixture para a conexão com o banco de dados chamada <code>session</code>:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">tests/conftest.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
@@ -902,30 +1000,27 @@
 <a id="__codelineno-5-18" name="__codelineno-5-18"></a>    <span class="k">yield</span> <span class="n">Session</span><span class="p">()</span>
 <a id="__codelineno-5-19" name="__codelineno-5-19"></a>    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">drop_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
+<p>Aqui, estamos utilizando o SQLite como o banco de dados em memória para os testes. Essa é uma prática comum em testes unitários, pois a utilização de um banco de dados em memória é mais rápida do que um banco de dados persistido em disco. Com o SQLite em memória, podemos criar e destruir bancos de dados facilmente, o que é útil para isolar os testes e garantir que os dados de um teste não afetem outros testes. Além disso, não precisamos nos preocupar com a limpeza dos dados após a execução dos testes, já que o banco de dados em memória é descartado quando o programa é encerrado.</p>
 <p>O que cada linha da fixture faz?</p>
 <ol>
 <li>
-<p>Em <code class="highlight"><span class="n">create_engine</span><span class="p">(</span><span class="s1">'sqlite:///:memory:'</span><span class="p">,</span> <span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s1">'check_same_thread'</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span> <span class="n">poolclass</span><span class="o">=</span><span class="n">StaticPool</span><span class="p">)</span></code>: estamos criando um mecanismo de banco de dados SQLite em memória usando o SQLAlchemy. Este mecanismo será usado para criar uma sessão de banco de dados para nossos testes.</p>
-<ul>
-<li>Estamos usando <code class="highlight"><span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s1">'check_same_thread'</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span></code> porque SQLite tem algumas limitações quando usado em diferentes threads.</li>
-<li>E o <code class="highlight"><span class="n">poolclass</span><span class="o">=</span><span class="n">StaticPool</span></code> significa que a mesma conexão será reutilizada para toda a duração do teste.</li>
-</ul>
+<p><code>create_engine('sqlite:///:memory:', connect_args={'check_same_thread': False}, poolclass=StaticPool)</code>: cria um mecanismo de banco de dados SQLite em memória usando SQLAlchemy. Este mecanismo será usado para criar uma sessão de banco de dados para nossos testes. Usamos <code>connect_args={'check_same_thread': False}</code> devido a algumas limitações do SQLite quando usado em threads diferentes. E <code>poolclass=StaticPool</code> para que a mesma conexão seja reutilizada durante todo o teste.</p>
 </li>
 <li>
-<p><code class="highlight"><span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">autocommit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">autoflush</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span></code>: Aqui estamos criando uma fábrica de sessões que será usada para criar sessões de banco de dados para nossos testes. Definimos <code>autocommit=False</code> para que possamos controlar quando as transações são commitadas e <code>autoflush=False</code> para que o SQLAlchemy não tente automaticamente flush (isto é, sincronizar o estado da sessão com o banco de dados) a cada operação.</p>
+<p><code>Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)</code>: cria uma fábrica de sessões para criar sessões de banco de dados para nossos testes. Definimos <code>autocommit=False</code> para controlar quando as transações são commitadas e <code>autoflush=False</code> para que SQLAlchemy não tente automaticamente sincronizar o estado da sessão com o banco de dados a cada operação.</p>
 </li>
 <li>
-<p><code class="highlight"><span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span></code>: Estamos criando todas as tabelas no banco de dados de teste. Isso é feito antes de cada teste que usa a fixture <code>session</code>.</p>
+<p><code>Base.metadata.create_all(engine)</code>: cria todas as tabelas no banco de dados de teste antes de cada teste que usa a fixture <code>session</code>.</p>
 </li>
 <li>
-<p><code class="highlight"><span class="k">yield</span> <span class="n">Session</span><span class="p">()</span></code>: Estamos produzindo uma instância de Session que será injetada em cada teste que solicita a fixture <code>session</code>. Essa sessão será usada para interagir com o banco de dados de teste.</p>
+<p><code>yield Session()</code>: fornece uma instância de Session que será injetada em cada teste que solicita a fixture <code>session</code>. Essa sessão será usada para interagir com o banco de dados de teste.</p>
 </li>
 <li>
-<p><code class="highlight"><span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">drop_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span></code>: Finalmente, após cada teste que usa a fixture <code>session</code>, todas as tabelas do banco de dados de teste são eliminadas. Isso garante que cada teste é executado contra um banco de dados limpo.</p>
+<p><code>Base.metadata.drop_all(engine)</code>: após cada teste que usa a fixture <code>session</code>, todas as tabelas do banco de dados de teste são eliminadas, garantindo que cada teste seja executado contra um banco de dados limpo.</p>
 </li>
 </ol>
-<p>Em resumo, esta fixture está configurando e limpando um banco de dados de teste para cada teste que o solicita. Isso garante que cada teste é isolado e tem seu próprio ambiente de banco de dados limpo para trabalhar. Isso é uma boa prática em testes de unidade, onde queremos que cada teste seja independente e não afete os outros.</p>
-<h3 id="criando-um-teste-para-a-nossa-tabela">Criando um teste para a nossa tabela</h3>
+<p>Resumindo, essa fixture está configurando e limpando um banco de dados de teste para cada teste que o solicita, assegurando que cada teste seja isolado e tenha seu próprio ambiente limpo para trabalhar. Isso é uma boa prática em testes de unidade, já que queremos que cada teste seja independente e não afete os demais.</p>
+<h3 id="criando-um-teste-para-a-nossa-tabela">Criando um Teste para a Nossa Tabela</h3>
 <p>Agora, no arquivo <code>test_db.py</code>, vamos escrever um teste para a criação de um usuário. Este teste adiciona um novo usuário ao banco de dados, faz commit das mudanças, e depois verifica se o usuário foi devidamente criado consultando-o pelo nome de usuário. Se o usuário foi criado corretamente, o teste passa. Caso contrário, o teste falha, indicando que há algo errado com nossa função de criação de usuário.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">tests/test_db.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
@@ -1165,7 +1260,7 @@
   <small>
     
       Última atualização:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 21, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 24, 2023</span>
       
     
   </small>
