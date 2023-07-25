@@ -836,6 +836,7 @@
 <hr>
 <p>Objetivos da Aula:</p>
 <ul>
+<li>Um entendimento básico sobre JWT</li>
 <li>Implementar autenticação de usuários com JWT.</li>
 <li>Adicionar lógica de autorização aos endpoints de atualização e deleção.</li>
 <li>Utilizar a biblioteca Bcrypt para encriptar as senhas dos usuários.</li>
@@ -890,7 +891,7 @@
 <h2 id="como-funciona-o-jwt">Como funciona o JWT</h2>
 <p>Em uma aplicação web, o processo de autenticação geralmente funciona da seguinte maneira:</p>
 <ol>
-<li>O usuário envia suas credenciais (nome de usuário e senha) para o servidor em um endpoint de geração de token (<code>/token</code> por exemplo);</li>
+<li>O usuário envia suas credenciais (e-mail e senha) para o servidor em um endpoint de geração de token (<code>/token</code> por exemplo);</li>
 <li>O servidor verifica as credenciais e, se estiverem corretas, gera um token JWT e o envia de volta ao cliente;</li>
 <li>Nas solicitações subsequentes, o cliente deve incluir esse token no cabeçalho de autorização de suas solicitações. Como por exemplo: <code>Authorization: Bearer &lt;token&gt;</code>;</li>
 <li>Quando o servidor recebe uma solicitação com um token JWT, ele pode verificar a assinatura e se o token é válido e não expirou, ele processa a solicitação.</li>
@@ -898,7 +899,7 @@
 <pre class="mermaid"><code>sequenceDiagram
   participant Cliente as Cliente
   participant Servidor as Servidor
-  Cliente-&gt;&gt;Servidor: Envia credenciais (nome de usuário e senha)
+  Cliente-&gt;&gt;Servidor: Envia credenciais (e-mail e senha)
   Servidor-&gt;&gt;Cliente: Verifica as credenciais
   Servidor-&gt;&gt;Cliente: Envia token JWT
   Cliente-&gt;&gt;Servidor: Envia solicitação com token JWT no cabeçalho de autorização
@@ -1273,19 +1274,15 @@
 </span><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="hll">    <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="n">user_id</span><span class="p">:</span>
 </span><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a>        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s1">'Not enough permissions'</span><span class="p">)</span>
 <a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a>
-<a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a>    <span class="n">db_user</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="n">select</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">user_id</span><span class="p">))</span>
-<a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a>
-<a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a>    <span class="k">if</span> <span class="n">db_user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a>        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s1">'User not found'</span><span class="p">)</span>
-<a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a>
-<a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a>    <span class="n">db_user</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span>
-<a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a>    <span class="n">db_user</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">password</span>
-<a id="__codelineno-22-27" name="__codelineno-22-27" href="#__codelineno-22-27"></a>    <span class="n">db_user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span>
-<a id="__codelineno-22-28" name="__codelineno-22-28" href="#__codelineno-22-28"></a>    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-<a id="__codelineno-22-29" name="__codelineno-22-29" href="#__codelineno-22-29"></a>    <span class="n">session</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">db_user</span><span class="p">)</span>
-<a id="__codelineno-22-30" name="__codelineno-22-30" href="#__codelineno-22-30"></a>
-<a id="__codelineno-22-31" name="__codelineno-22-31" href="#__codelineno-22-31"></a>    <span class="k">return</span> <span class="n">db_user</span>
+<a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a>    <span class="n">current_user</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">username</span>
+<a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a>    <span class="n">current_user</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">password</span>
+<a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a>    <span class="n">current_user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span>
+<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a>    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a>    <span class="n">session</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">current_user</span><span class="p">)</span>
+<a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a>
+<a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a>    <span class="k">return</span> <span class="n">current_user</span>
 </code></pre></div>
+<p>Com isso, podemos remover a query feita no endpoint para encontrar o User, pois ela já está sendo feita no <code>get_current_user</code>, simplificando ainda mais nosso endpoint.</p>
 <p>Agora, vamos aplicar a autenticação no endpoint DELETE. Semelhante ao PUT, se o <code>user_id</code> da rota não corresponder ao <code>id</code> do usuário autenticado, retornaremos um erro 400. Se tudo estiver correto, o usuário será deletado.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">fast_zero/app.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-75">75</a></span>
 <span class="normal"><a href="#__codelineno-23-76">76</a></span>
@@ -1299,12 +1296,7 @@
 <span class="normal"><a href="#__codelineno-23-84">84</a></span>
 <span class="normal"><a href="#__codelineno-23-85">85</a></span>
 <span class="normal"><a href="#__codelineno-23-86">86</a></span>
-<span class="normal"><a href="#__codelineno-23-87">87</a></span>
-<span class="normal"><a href="#__codelineno-23-88">88</a></span>
-<span class="normal"><a href="#__codelineno-23-89">89</a></span>
-<span class="normal"><a href="#__codelineno-23-90">90</a></span>
-<span class="normal"><a href="#__codelineno-23-91">91</a></span>
-<span class="normal"><a href="#__codelineno-23-92">92</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-75" name="__codelineno-23-75"></a><span class="nd">@app</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">'/users/</span><span class="si">{user_id}</span><span class="s1">'</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">Message</span><span class="p">)</span>
+<span class="normal"><a href="#__codelineno-23-87">87</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-75" name="__codelineno-23-75"></a><span class="nd">@app</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">'/users/</span><span class="si">{user_id}</span><span class="s1">'</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">Message</span><span class="p">)</span>
 <a id="__codelineno-23-76" name="__codelineno-23-76"></a><span class="k">def</span> <span class="nf">delete_user</span><span class="p">(</span>
 <a id="__codelineno-23-77" name="__codelineno-23-77"></a>    <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
 <a id="__codelineno-23-78" name="__codelineno-23-78"></a>    <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_session</span><span class="p">),</span>
@@ -1313,15 +1305,10 @@
 <a id="__codelineno-23-81" name="__codelineno-23-81"></a><span class="hll">    <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="n">user_id</span><span class="p">:</span>
 </span><a id="__codelineno-23-82" name="__codelineno-23-82"></a><span class="hll">        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s1">'Not enough permissions'</span><span class="p">)</span>
 </span><a id="__codelineno-23-83" name="__codelineno-23-83"></a>
-<a id="__codelineno-23-84" name="__codelineno-23-84"></a>    <span class="n">db_user</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="n">select</span><span class="p">(</span><span class="n">User</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">user_id</span><span class="p">))</span>
-<a id="__codelineno-23-85" name="__codelineno-23-85"></a>
-<a id="__codelineno-23-86" name="__codelineno-23-86"></a>    <span class="k">if</span> <span class="n">db_user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-23-87" name="__codelineno-23-87"></a>        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s1">'User not found'</span><span class="p">)</span>
-<a id="__codelineno-23-88" name="__codelineno-23-88"></a>
-<a id="__codelineno-23-89" name="__codelineno-23-89"></a>    <span class="n">session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">db_user</span><span class="p">)</span>
-<a id="__codelineno-23-90" name="__codelineno-23-90"></a>    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-<a id="__codelineno-23-91" name="__codelineno-23-91"></a>
-<a id="__codelineno-23-92" name="__codelineno-23-92"></a>    <span class="k">return</span> <span class="p">{</span><span class="s1">'detail'</span><span class="p">:</span> <span class="s1">'User deleted'</span><span class="p">}</span>
+<a id="__codelineno-23-84" name="__codelineno-23-84"></a>    <span class="n">session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">current_user</span><span class="p">)</span>
+<a id="__codelineno-23-85" name="__codelineno-23-85"></a>    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<a id="__codelineno-23-86" name="__codelineno-23-86"></a>
+<a id="__codelineno-23-87" name="__codelineno-23-87"></a>    <span class="k">return</span> <span class="p">{</span><span class="s1">'detail'</span><span class="p">:</span> <span class="s1">'User deleted'</span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>Com essa nova dependência, o FastAPI automaticamente garantirá que um token de autenticação válido seja fornecido antes de permitir o acesso a esses endpoints. Se o token não for válido, ou se o usuário tentar modificar ou deletar um usuário diferente, um erro será retornado.</p>
 <h3 id="atualizando-os-testes">Atualizando os Testes</h3>
