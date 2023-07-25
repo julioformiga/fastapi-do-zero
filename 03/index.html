@@ -1131,7 +1131,7 @@
 <a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>   ├── test_app.py
 <a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>   └── test_db.py
 </code></pre></div>
-<p>No arquivo <code>alembic.ini</code>: ficam as configurações gerais das nossas migrações. Na pasta <code>migrate</code> foram criados um arquivo chamado <code>env.py</code>, esse arquivo é responsável por como as migrações serão feitas e o arquivo <code>script.py.mako</code> é um template para as novas migrações.</p>
+<p>No arquivo <code>alembic.ini</code>: ficam as configurações gerais das nossas migrações. Na pasta <code>migrations</code> foram criados um arquivo chamado <code>env.py</code>, esse arquivo é responsável por como as migrações serão feitas e o arquivo <code>script.py.mako</code> é um template para as novas migrações.</p>
 <h3 id="criando-uma-migracao-automatica">Criando uma migração automática</h3>
 <p>Com o Alembic devidamente instalado e iniciado, agora é o momento de gerar nossa primeira migração. Mas, antes disso, precisamos garantir que o Alembic consiga acessar nossas configurações e modelos corretamente. Para isso, vamos fazer algumas alterações no arquivo <code>migrations/env.py</code>.</p>
 <p>Neste arquivo, precisamos:</p>
@@ -1260,7 +1260,7 @@
   <small>
     
       Última atualização:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 24, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 25, 2023</span>
       
     
   </small>
