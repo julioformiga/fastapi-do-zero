@@ -1039,6 +1039,7 @@
 </code></pre></div></td></tr></table></div>
 <h3 id="utilizando-oauth2passwordrequestform">Utilizando OAuth2PasswordRequestForm</h3>
 <p>A classe <code>OAuth2PasswordRequestForm</code> é uma classe especial do FastAPI que gera automaticamente um formulário para solicitar o username (email neste caso) e a senha. Este formulário será apresentado automaticamente no Swagger UI e Redoc, o que facilita a realização de testes de autenticação.</p>
+<p>Para usar os formulários no FastAPI, precisamos instalar o <code>python-multipart</code>:</p>
 <div class="highlight"><span class="filename">$ Execução no terminal!</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>poetry<span class="w"> </span>add<span class="w"> </span>python-multipart
 </code></pre></div>
 <h3 id="criando-um-endpoint-de-geracao-do-token_1">Criando um endpoint de geração do token</h3>
