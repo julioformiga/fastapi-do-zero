@@ -826,7 +826,7 @@
 <li>Mover coisas de altenticação para um arquivo chamado <code>fast_zero/auth.py</code></li>
 <li>Deixando em <code>fast_zero/secutiry.py</code> somente as validações de senha</li>
 <li>Remover constantes usados em código (<code>SECRET_KEY</code>, <code>ALGORITHM</code> e <code>ACCESS_TOKEN_EXPIRE_MINUTES</code>) usando a classe Settings do arquivo <code>fast_zero/settings/py</code> que já temos e movendo para variáveis de ambiente no arquivo <code>.env</code></li>
-<li>Criar um router específico para as rotas de <code>/users/</code></li>
+<li>Criar um routers específicos</li>
 </ul>
 <details class="tip">
 <summary>Caso prefira ver a aula em vídeo</summary>
@@ -1061,7 +1061,7 @@
 <a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="kn">from</span> <span class="nn">fast_zero.schemas</span> <span class="kn">import</span> <span class="n">Token</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="kn">from</span> <span class="nn">fast_zero.security</span> <span class="kn">import</span> <span class="n">create_access_token</span><span class="p">,</span> <span class="n">verify_password</span>
 <a id="__codelineno-3-10" name="__codelineno-3-10"></a>
-<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">(</span><span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s1">'token'</span><span class="p">])</span>
 <a id="__codelineno-3-12" name="__codelineno-3-12"></a>
 <a id="__codelineno-3-13" name="__codelineno-3-13"></a>
 <a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">'/token'</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">Token</span><span class="p">)</span>
