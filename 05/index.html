@@ -1269,9 +1269,9 @@
 <a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="k">def</span> <span class="nf">update_user</span><span class="p">(</span>
 <a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>    <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
 <a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>    <span class="n">user</span><span class="p">:</span> <span class="n">UserSchema</span><span class="p">,</span>
-<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="hll">    <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_session</span><span class="p">),</span>
-</span><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>    <span class="n">current_user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_current_user</span><span class="p">),</span>
-<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="p">):</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>    <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_session</span><span class="p">),</span>
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="hll">    <span class="n">current_user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_current_user</span><span class="p">),</span>
+</span><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="p">):</span>
 <a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="hll">    <span class="k">if</span> <span class="n">current_user</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="n">user_id</span><span class="p">:</span>
 </span><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="hll">        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s1">'Not enough permissions'</span><span class="p">)</span>
 </span><a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a>
@@ -1355,9 +1355,9 @@
 <span class="normal"><a href="#__codelineno-25-67">67</a></span>
 <span class="normal"><a href="#__codelineno-25-68">68</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-44" name="__codelineno-25-44"></a><span class="k">def</span> <span class="nf">test_update_user</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
 <a id="__codelineno-25-45" name="__codelineno-25-45"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
-<a id="__codelineno-25-46" name="__codelineno-25-46"></a>        <span class="sa">f</span><span class="s1">'/users/</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
-<a id="__codelineno-25-47" name="__codelineno-25-47"></a>        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Authorization'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">'</span><span class="p">},</span>
-<a id="__codelineno-25-48" name="__codelineno-25-48"></a>        <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-25-46" name="__codelineno-25-46"></a><span class="hll">        <span class="sa">f</span><span class="s1">'/users/</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+</span><a id="__codelineno-25-47" name="__codelineno-25-47"></a><span class="hll">        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Authorization'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">'</span><span class="p">},</span>
+</span><a id="__codelineno-25-48" name="__codelineno-25-48"></a>        <span class="n">json</span><span class="o">=</span><span class="p">{</span>
 <a id="__codelineno-25-49" name="__codelineno-25-49"></a>            <span class="s1">'username'</span><span class="p">:</span> <span class="s1">'bob'</span><span class="p">,</span>
 <a id="__codelineno-25-50" name="__codelineno-25-50"></a>            <span class="s1">'email'</span><span class="p">:</span> <span class="s1">'bob@example.com'</span><span class="p">,</span>
 <a id="__codelineno-25-51" name="__codelineno-25-51"></a>            <span class="s1">'password'</span><span class="p">:</span> <span class="s1">'mynewpassword'</span><span class="p">,</span>
@@ -1372,11 +1372,11 @@
 <a id="__codelineno-25-60" name="__codelineno-25-60"></a>
 <a id="__codelineno-25-61" name="__codelineno-25-61"></a>
 <a id="__codelineno-25-62" name="__codelineno-25-62"></a><span class="k">def</span> <span class="nf">test_delete_user</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
-<a id="__codelineno-25-63" name="__codelineno-25-63"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-<a id="__codelineno-25-64" name="__codelineno-25-64"></a>        <span class="sa">f</span><span class="s1">'/users/</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
-<a id="__codelineno-25-65" name="__codelineno-25-65"></a>        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Authorization'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">'</span><span class="p">},</span>
-<a id="__codelineno-25-66" name="__codelineno-25-66"></a>    <span class="p">)</span>
-<a id="__codelineno-25-67" name="__codelineno-25-67"></a>    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+<a id="__codelineno-25-63" name="__codelineno-25-63"></a><span class="hll">    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+</span><a id="__codelineno-25-64" name="__codelineno-25-64"></a><span class="hll">        <span class="sa">f</span><span class="s1">'/users/</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
+</span><a id="__codelineno-25-65" name="__codelineno-25-65"></a><span class="hll">        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'Authorization'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">'</span><span class="p">},</span>
+</span><a id="__codelineno-25-66" name="__codelineno-25-66"></a><span class="hll">    <span class="p">)</span>
+</span><a id="__codelineno-25-67" name="__codelineno-25-67"></a>    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
 <a id="__codelineno-25-68" name="__codelineno-25-68"></a>    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span> <span class="o">==</span> <span class="p">{</span><span class="s1">'detail'</span><span class="p">:</span> <span class="s1">'User deleted'</span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>Finalmente, podemos rodar todos os testes para garantir que tudo esteja funcionando corretamente.</p>
@@ -1408,7 +1408,7 @@
   <small>
     
       Última atualização:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 26, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 27, 2023</span>
       
     
   </small>

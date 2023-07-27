@@ -823,10 +823,10 @@
 <p>Objetivos da Aula:</p>
 <ul>
 <li><strong>Reestruturar o projeto para facilitar sua manutenção</strong></li>
-<li>Mover coisas de altenticação para um arquivo chamado <code>fast_zero/auth.py</code></li>
+<li>Mover coisas de autenticação para um arquivo chamado <code>fast_zero/auth.py</code></li>
 <li>Deixando em <code>fast_zero/secutiry.py</code> somente as validações de senha</li>
 <li>Remover constantes usados em código (<code>SECRET_KEY</code>, <code>ALGORITHM</code> e <code>ACCESS_TOKEN_EXPIRE_MINUTES</code>) usando a classe Settings do arquivo <code>fast_zero/settings/py</code> que já temos e movendo para variáveis de ambiente no arquivo <code>.env</code></li>
-<li>Criar um routers específicos</li>
+<li>Criar routers específicos para rotas que tratam das funcionalidades de usuários e para as de autenticação</li>
 </ul>
 <details class="tip">
 <summary>Caso prefira ver a aula em vídeo</summary>
@@ -1353,8 +1353,8 @@
 </code></pre></div>
 <p>Estes valores não devem estar diretamente no código-fonte, então vamos movê-los para nossas variáveis de ambiente e representá-los na nossa classe <code>Settings</code>.</p>
 <h3 id="adicionando-as-constantes-a-settings">Adicionando as constantes a Settings</h3>
-<p>Já temos uma classe ideal para fazer isso em <code>zero_app/settings.py</code>. Vamos alterar essa classe para incluir estas constantes.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">zero_app/settings.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<p>Já temos uma classe ideal para fazer isso em <code>fast_zero/settings.py</code>. Vamos alterar essa classe para incluir estas constantes.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">fast_zero/settings.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
@@ -1387,15 +1387,15 @@
 <a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="nv">ALGORITHM</span><span class="o">=</span><span class="s2">"HS256"</span>
 <a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="nv">ACCESS_TOKEN_EXPIRE_MINUTES</span><span class="o">=</span><span class="m">30</span>
 </code></pre></div></td></tr></table></div>
-<p>Com isso, podemos alterar o nosso código em <code>zero_app/security.py</code> para ler as constantes a partir da classe <code>Settings</code>.</p>
+<p>Com isso, podemos alterar o nosso código em <code>fast_zero/security.py</code> para ler as constantes a partir da classe <code>Settings</code>.</p>
 <h3 id="removendo-as-constantes-do-codigo">Removendo as constantes do código</h3>
 <p>Primeiramente, vamos carregar as configurações da classe <code>Settings</code> no início do módulo <code>security.py</code>.</p>
-<div class="highlight"><span class="filename">zero_app/security.py</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">from</span> <span class="nn">fast_zero.settings</span> <span class="kn">import</span> <span class="n">Settings</span>
+<div class="highlight"><span class="filename">fast_zero/security.py</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">from</span> <span class="nn">fast_zero.settings</span> <span class="kn">import</span> <span class="n">Settings</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">settings</span> <span class="o">=</span> <span class="n">Settings</span><span class="p">()</span>
 </code></pre></div>
 <p>Com isso, todos os lugares onde as constantes eram usadas devem ser substituídos por <code>settings.CONSTANTE</code>. Por exemplo, na função <code>create_access_token</code>, vamos alterar para usar as constantes da classe <code>Settings</code>:</p>
-<div class="highlight"><span class="filename">zero_app/security.py</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">def</span> <span class="nf">create_access_token</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<div class="highlight"><span class="filename">fast_zero/security.py</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">def</span> <span class="nf">create_access_token</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="n">to_encode</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="n">expire</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span>
 <a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>        <span class="n">minutes</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">ACCESS_TOKEN_EXPIRE_MINUTES</span>
@@ -1438,7 +1438,7 @@
   <small>
     
       Última atualização:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 26, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 27, 2023</span>
       
     
   </small>
